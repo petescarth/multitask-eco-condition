@@ -1,0 +1,11 @@
+# Local reference archive (source videos, papers, prompts, raw exports)
+reference/
+
+# OS & editor files
+.DS_Store
+Thumbs.db
+Desktop.ini
+.vscode/
+.idea/
+*.tmp
+*.log

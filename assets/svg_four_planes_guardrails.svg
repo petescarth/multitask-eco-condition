@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 540" width="1200" height="540" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+  <rect width="1200" height="540" rx="16" fill="#0D131F" stroke="#1E293B" stroke-width="1.6"/>
+
+  <text x="600" y="38" text-anchor="middle" fill="#F8FAFC" font-size="21" font-weight="800">
+    Four Physical Landscape Planes &amp; Language Guardrails
+  </text>
+  <text x="600" y="64" text-anchor="middle" fill="#94A3B8" font-size="14">
+    Tracking whether water, soil, shade and fire are held in place (Holding verbs) or draining away (Losing verbs)
+  </text>
+
+  <!-- LEFT 4 PLANES -->
+  <rect x="24" y="84" width="714" height="100" rx="11" fill="#0F2625" stroke="#2DD4BF" stroke-width="2"/>
+  <text x="44" y="114" fill="#2DD4BF" font-size="18.5" font-weight="800">Plane 3 · Canopy, Shade &amp; Understorey</text>
+  <text x="44" y="144" fill="#F8FAFC" font-size="15.5"><tspan fill="#22C55E" font-weight="800">Holding:</tspan> arch-shading, canopy-filtering, cooling</text>
+  <text x="44" y="169" fill="#F8FAFC" font-size="15.5"><tspan fill="#FB7185" font-weight="800">Losing:</tspan> tree removal, baking, bleaching</text>
+
+  <rect x="24" y="196" width="714" height="100" rx="11" fill="#23172B" stroke="#A855F7" stroke-width="2"/>
+  <text x="44" y="226" fill="#C084FC" font-size="18.5" font-weight="800">Plane 4 · Fire &amp; Disturbance Renewal</text>
+  <text x="44" y="256" fill="#F8FAFC" font-size="15.5"><tspan fill="#22C55E" font-weight="800">Holding:</tspan> mosaic cycling, awakening seedbanks</text>
+  <text x="44" y="281" fill="#F8FAFC" font-size="15.5"><tspan fill="#FB7185" font-weight="800">Losing:</tspan> thicket-locking shrubs, heavy unburned fuel</text>
+
+  <rect x="24" y="308" width="714" height="100" rx="11" fill="#1F1912" stroke="#F59E0B" stroke-width="2"/>
+  <text x="44" y="338" fill="#FBBF24" font-size="18.5" font-weight="800">Plane 2 · Soil Surface &amp; Water Flow</text>
+  <text x="44" y="368" fill="#F8FAFC" font-size="15.5"><tspan fill="#22C55E" font-weight="800">Holding:</tspan> slowing runoff, percolating, cradling twigs</text>
+  <text x="44" y="393" fill="#F8FAFC" font-size="15.5"><tspan fill="#FB7185" font-weight="800">Losing:</tspan> crusting, hard-setting, sheet-stripping</text>
+
+  <rect x="24" y="420" width="714" height="100" rx="11" fill="#111C2D" stroke="#38BDF8" stroke-width="2"/>
+  <text x="44" y="450" fill="#38BDF8" font-size="18.5" font-weight="800">Plane 1 · Underground Roots &amp; Moisture</text>
+  <text x="44" y="480" fill="#F8FAFC" font-size="15.5"><tspan fill="#22C55E" font-weight="800">Holding:</tspan> root-knitting, deep anchoring, wicking</text>
+  <text x="44" y="505" fill="#F8FAFC" font-size="15.5"><tspan fill="#FB7185" font-weight="800">Losing:</tspan> pan-smearing, sealing pores, drying subsoil</text>
+
+  <!-- RIGHT: LANGUAGE GUARDRAILS -->
+  <rect x="758" y="84" width="418" height="436" rx="12" fill="#1B1320" stroke="#FB7185" stroke-width="2.2"/>
+  <text x="967" y="122" text-anchor="middle" fill="#FB7185" font-size="20" font-weight="800">LANGUAGE GUARDRAILS</text>
+  <text x="967" y="148" text-anchor="middle" fill="#CBD5E1" font-size="14.5">Automated checks enforced on every site</text>
+
+  <rect x="780" y="170" width="374" height="92" rx="10" fill="#0B0F17" stroke="#334155" stroke-width="1.3"/>
+  <text x="800" y="201" fill="#F8FAFC" font-size="16.5" font-weight="800">1. No Cultural Impersonation</text>
+  <text x="800" y="226" fill="#CBD5E1" font-size="14.5">Never speaks for or imitates cultural</text>
+  <text x="800" y="247" fill="#CBD5E1" font-size="14.5">authorities or community voices.</text>
+
+  <rect x="780" y="278" width="374" height="92" rx="10" fill="#0B0F17" stroke="#334155" stroke-width="1.3"/>
+  <text x="800" y="309" fill="#F8FAFC" font-size="16.5" font-weight="800">2. No Invented Ownership Claims</text>
+  <text x="800" y="334" fill="#CBD5E1" font-size="14.5">Blocks ceremonial, cultural or ownership</text>
+  <text x="800" y="355" fill="#CBD5E1" font-size="14.5">claims — physical observations only.</text>
+
+  <rect x="780" y="386" width="374" height="112" rx="10" fill="#0E241E" stroke="#10B981" stroke-width="1.6"/>
+  <text x="800" y="417" fill="#34D399" font-size="16.5" font-weight="800">3. Strict Step-1 Noun Filter</text>
+  <text x="800" y="442" fill="#CBD5E1" font-size="14.5">Checklist nouns are withheld first so AI</text>
+  <text x="800" y="463" fill="#CBD5E1" font-size="14.5">describes active physical processes</text>
+  <text x="800" y="484" fill="#6EE7B7" font-size="14.5" font-weight="700">before any scores are assigned.</text>
+</svg>

@@ -1,0 +1,2664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>From Static Ledgers to Living Processes — Dr Peter Scarth</title>
+<style>
+  :root {
+    --bg: #0B0F17;
+    --surface: #111827;
+    --surface-2: #162033;
+    --border: rgba(148, 163, 184, 0.20);
+    --border-strong: rgba(148, 163, 184, 0.36);
+    --text: #F8FAFC;
+    --text-mid: #CBD5E1;
+    --text-dim: #94A3B8;
+    --sky: #38BDF8;
+    --emerald: #10B981;
+    --green: #22C55E;
+    --teal: #2DD4BF;
+    --amber: #F59E0B;
+    --violet: #A855F7;
+    --rose: #FB7185;
+    --red: #EF4444;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #05080E;
+    color: var(--text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===================== PRESENTATION VIEWPORT ===================== */
+  #viewport {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: radial-gradient(circle at 20% 15%, rgba(56, 189, 248, 0.07), transparent 44%),
+                radial-gradient(circle at 82% 85%, rgba(16, 185, 129, 0.06), transparent 44%),
+                #05080E;
+  }
+
+  #deck {
+    width: 1920px;
+    height: 1080px;
+    position: relative;
+    transform-origin: center center;
+    background: var(--bg);
+    box-shadow: 0 32px 96px rgba(0, 0, 0, 0.88), 0 0 0 1px rgba(148, 163, 184, 0.14);
+    overflow: hidden;
+  }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    width: 1920px;
+    height: 1080px;
+    padding: 40px 56px 56px 56px;
+    display: none;
+    flex-direction: column;
+    gap: 20px;
+    background: radial-gradient(circle at 86% 12%, rgba(56, 189, 248, 0.055), transparent 36%),
+                radial-gradient(circle at 12% 88%, rgba(16, 185, 129, 0.045), transparent 38%),
+                var(--bg);
+  }
+  .slide.active {
+    display: flex;
+    animation: slideFade 0.2s ease-out;
+  }
+  @keyframes slideFade {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .slide aside.notes { display: none; }
+
+  /* Acknowledgement full-bleed quiet slide */
+  .slide.layout-ack {
+    padding: 80px 140px;
+    justify-content: center;
+    align-items: center;
+    background:
+      linear-gradient(180deg, rgba(8, 12, 20, 0.88) 0%, rgba(8, 12, 20, 0.93) 100%),
+      url('assets/site_85.jpg') center/cover no-repeat;
+  }
+  .ack-wrap {
+    max-width: 1260px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 34px;
+  }
+  .ack-rule {
+    width: 120px;
+    height: 3px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--amber), rgba(245, 158, 11, 0.15));
+  }
+  .ack-title {
+    font-size: 52px;
+    font-weight: 800;
+    letter-spacing: -0.6px;
+    color: var(--text);
+  }
+  .ack-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    font-size: 31px;
+    line-height: 1.52;
+    color: var(--text-mid);
+  }
+  .ack-copy strong { color: var(--text); font-weight: 700; }
+  .ack-respect { color: #FDE68A; font-weight: 500; }
+
+  /* Hero title slide */
+  .slide.layout-hero {
+    padding: 58px 68px;
+    justify-content: center;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 1.05fr;
+    gap: 48px;
+    align-items: center;
+    height: 100%;
+  }
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+  }
+  .hero-event {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--sky);
+  }
+  .hero-title {
+    font-size: 74px;
+    font-weight: 900;
+    line-height: 1.06;
+    letter-spacing: -1.6px;
+    color: var(--text);
+  }
+  .hero-sub {
+    font-size: 26px;
+    line-height: 1.45;
+    color: var(--text-mid);
+    max-width: 780px;
+  }
+  .hero-author {
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .author-name { font-size: 28px; font-weight: 800; color: var(--text); }
+  .author-roles { font-size: 20px; color: var(--text-dim); line-height: 1.4; }
+  .kpi-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 8px;
+  }
+  .kpi-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .kpi-val { font-size: 32px; font-weight: 900; letter-spacing: -0.5px; }
+  .kpi-lbl { font-size: 16.5px; color: var(--text-dim); line-height: 1.3; }
+  .hero-right { height: 100%; display: flex; align-items: center; }
+  .hero-map-box { width: 100%; height: 820px; padding: 14px; }
+
+  /* Standard slide header & body */
+  .s-head {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 14px;
+    flex-shrink: 0;
+  }
+  .s-kicker {
+    font-size: 16.5px;
+    font-weight: 700;
+    letter-spacing: 0.9px;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 6px;
+  }
+  .s-title {
+    font-size: 42px;
+    font-weight: 850;
+    letter-spacing: -0.7px;
+    line-height: 1.15;
+    color: var(--text);
+  }
+  .s-sub {
+    font-size: 20px;
+    color: var(--text-mid);
+    margin-top: 6px;
+    line-height: 1.35;
+  }
+  .s-body {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .s-num {
+    position: absolute;
+    right: 30px;
+    bottom: 18px;
+    font-size: 16px;
+    font-weight: 700;
+    color: rgba(148, 163, 184, 0.45);
+    letter-spacing: 0.4px;
+  }
+
+  /* Common layout helpers */
+  .split-2 {
+    flex: 1;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .split-wide-left {
+    flex: 1;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 1.55fr 1fr;
+    gap: 24px;
+  }
+  .split-wide-right {
+    flex: 1;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 0.85fr 1.45fr;
+    gap: 24px;
+  }
+  .grid-3 {
+    flex: 1;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+  .stack-visual {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .side-col {
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .strip-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    flex-shrink: 0;
+  }
+  .strip-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    flex-shrink: 0;
+  }
+
+  /* Cards & panels */
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-height: 0;
+  }
+  .panel-hd {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.2px;
+  }
+  .mini-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 22px;
+    font-size: 20px;
+    line-height: 1.42;
+    color: var(--text-mid);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .mini-card strong { font-size: 20.5px; font-weight: 800; }
+  .mini-card.inline-note {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+  .mini-card.inline-note strong { white-space: nowrap; }
+
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 5px solid var(--amber);
+    border-radius: 14px;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .stat-big {
+    font-size: 46px;
+    font-weight: 900;
+    color: var(--amber);
+    white-space: nowrap;
+  }
+  .stat-desc {
+    font-size: 20px;
+    line-height: 1.42;
+    color: var(--text-mid);
+  }
+  .stat-desc strong { color: var(--text); }
+
+  /* Figures & photos */
+  .fig-box {
+    background: #0D131F;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 12px;
+    min-height: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .fig-box.main-fig { flex: 1; }
+  .fig-box img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+    cursor: zoom-in;
+  }
+  .fig-box img.cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .fig-box img.pos-top { object-position: center 18%; }
+
+  .photo-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-height: 0;
+    flex: 1;
+  }
+  .photo-card .fig-box { flex: 1; padding: 0; border: none; border-radius: 10px; }
+  .photo-cap {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 2px 6px 4px 6px;
+  }
+  .photo-cap strong { font-size: 20px; font-weight: 800; color: var(--text); }
+  .photo-cap span { font-size: 18px; line-height: 1.38; color: var(--text-mid); }
+  .photo-card.compact .photo-cap strong { font-size: 19px; }
+  .photo-card.compact .photo-cap span { font-size: 17px; }
+
+  /* Bio slide banner */
+  .bio-banner {
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.10), rgba(16, 185, 129, 0.08));
+    border: 1px solid rgba(56, 189, 248, 0.28);
+    border-radius: 16px;
+    padding: 20px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  .bio-quote { font-size: 23.5px; line-height: 1.44; color: var(--text); }
+  .bio-quote strong { color: var(--sky); }
+  .bio-offclock { font-size: 18.5px; color: var(--text-dim); font-style: italic; }
+  .bio-photos { flex: 1; }
+
+  /* Slide 1 users & measures */
+  .user-list { display: flex; flex-direction: column; gap: 16px; flex: 1; justify-content: center; }
+  .user-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    font-size: 22px;
+    line-height: 1.42;
+    color: var(--text-mid);
+    padding: 12px 16px;
+    background: rgba(11, 15, 23, 0.55);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+  }
+  .user-row strong { color: var(--text); }
+  .dot {
+    width: 14px; height: 14px; border-radius: 50%; margin-top: 9px; flex-shrink: 0;
+  }
+  .dot.sky { background: var(--sky); }
+  .dot.emerald { background: var(--emerald); }
+  .dot.amber { background: var(--amber); }
+  .dot.violet { background: var(--violet); }
+  .dot.teal { background: var(--teal); }
+
+  .measure-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    flex: 1;
+    align-content: center;
+  }
+  .m-card {
+    background: rgba(11, 15, 23, 0.62);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .m-num {
+    width: 34px; height: 34px; border-radius: 9px;
+    background: rgba(16, 185, 129, 0.16);
+    border: 1px solid rgba(16, 185, 129, 0.45);
+    color: var(--emerald);
+    font-weight: 800; font-size: 18px;
+    display: inline-flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .m-card strong { display: block; font-size: 20.5px; color: var(--text); margin-bottom: 4px; }
+  .m-card small { font-size: 17.5px; line-height: 1.38; color: var(--text-dim); display: block; }
+
+  /* Slide 5 Video panel */
+  .video-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-height: 0;
+  }
+  .video-frame {
+    flex: 1;
+    min-height: 0;
+    background: #05080E;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  .video-frame video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+  .video-badge {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    background: rgba(11, 15, 23, 0.82);
+    border: 1px solid var(--border-strong);
+    color: var(--text-mid);
+    font-size: 15px;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 999px;
+    pointer-events: none;
+  }
+  .legend-strip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 6px 8px 2px 8px;
+    flex-wrap: wrap;
+  }
+  .leg-title { font-size: 17.5px; font-weight: 700; color: var(--text); }
+  .leg-scale { display: flex; align-items: center; gap: 14px; font-size: 16px; color: var(--text-mid); }
+  .sw {
+    display: inline-block; width: 14px; height: 14px; border-radius: 3px;
+    margin-right: 6px; vertical-align: -2px;
+  }
+
+  /* Act 4 Bridge & Positioning boxes */
+  .bridge-line {
+    font-size: 22px;
+    color: var(--text-mid);
+    background: rgba(245, 158, 11, 0.08);
+    border-left: 4px solid var(--amber);
+    border-radius: 8px;
+    padding: 12px 20px;
+    flex-shrink: 0;
+  }
+  .position-box {
+    background: rgba(56, 189, 248, 0.09);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    border-left: 5px solid var(--sky);
+    border-radius: 12px;
+    padding: 16px 24px;
+    font-size: 20.5px;
+    line-height: 1.46;
+    color: var(--text);
+    flex-shrink: 0;
+  }
+
+  /* Slide 13 Interactive 4-Regime Inspector */
+  .tab-bar {
+    display: flex;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+  .tab-btn {
+    flex: 1;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text-mid);
+    font-size: 19px;
+    font-weight: 700;
+    padding: 13px 16px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .tab-btn:hover { border-color: var(--border-strong); color: var(--text); }
+  .tab-btn.active {
+    background: var(--surface-2);
+    border-color: var(--sky);
+    color: var(--text);
+    box-shadow: 0 0 0 1px var(--sky);
+  }
+  .regime-stage {
+    flex: 1;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .reg-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 18px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-height: 0;
+  }
+  .reg-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .reg-id { font-size: 17px; font-weight: 800; letter-spacing: 0.3px; }
+  .reg-sub { font-size: 22px; font-weight: 800; color: var(--text); margin-top: 2px; }
+  .reg-pill {
+    padding: 6px 13px;
+    border-radius: 999px;
+    font-size: 15.5px;
+    font-weight: 800;
+    border: 1px solid currentColor;
+    white-space: nowrap;
+  }
+  .reg-photo { flex: 1.2; padding: 0; border-radius: 10px; }
+  .reg-compare {
+    background: rgba(11, 15, 23, 0.75);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 17.5px;
+    line-height: 1.42;
+    color: var(--text-mid);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .reg-verbs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+  }
+  .v-chip {
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 700;
+  }
+  .v-hold { background: rgba(34, 197, 94, 0.14); border: 1px solid rgba(34, 197, 94, 0.42); color: #86EFAC; }
+  .v-lose { background: rgba(245, 158, 11, 0.14); border: 1px solid rgba(245, 158, 11, 0.42); color: #FCD34D; }
+
+  /* Slide 16 side copy */
+  .side-p { font-size: 21px; line-height: 1.48; color: var(--text-mid); }
+  .q-list { display: flex; flex-direction: column; gap: 18px; }
+  .q-item {
+    font-size: 20.5px;
+    line-height: 1.45;
+    color: var(--text-mid);
+    background: rgba(11, 15, 23, 0.58);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 18px;
+  }
+  .q-item strong { color: var(--text); }
+
+  /* Slide 17 Closing Q&A Anchor */
+  .slide[data-id="17"] .s-kicker { color: var(--sky); }
+  .takeaways-grid {
+    flex: 1;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 20px;
+  }
+  .tk-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 4px solid var(--sky);
+    border-radius: 16px;
+    padding: 22px 26px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+  }
+  .tk-card.emerald { border-top-color: var(--emerald); }
+  .tk-card.violet { border-top-color: var(--violet); }
+  .tk-card.amber { border-top-color: var(--amber); }
+  .tk-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .tk-num {
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--sky);
+    line-height: 1;
+  }
+  .tk-card.emerald .tk-num { color: var(--emerald); }
+  .tk-card.violet .tk-num { color: var(--violet); }
+  .tk-card.amber .tk-num { color: var(--amber); }
+  .tk-tag {
+    font-size: 13.5px;
+    font-weight: 800;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: rgba(56, 189, 248, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    color: #7DD3FC;
+  }
+  .tk-card.emerald .tk-tag {
+    background: rgba(16, 185, 129, 0.12);
+    border-color: rgba(16, 185, 129, 0.38);
+    color: #6EE7B7;
+  }
+  .tk-card.violet .tk-tag {
+    background: rgba(168, 85, 247, 0.12);
+    border-color: rgba(168, 85, 247, 0.38);
+    color: #D8B4FE;
+  }
+  .tk-card.amber .tk-tag {
+    background: rgba(245, 158, 11, 0.12);
+    border-color: rgba(245, 158, 11, 0.38);
+    color: #FDE68A;
+  }
+  .tk-card h3 {
+    font-size: 25px;
+    font-weight: 850;
+    color: var(--text);
+    line-height: 1.2;
+  }
+  .tk-card p {
+    font-size: 19.5px;
+    line-height: 1.44;
+    color: var(--text-mid);
+  }
+  .tk-card strong { color: var(--text); }
+
+  .collab-band {
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.09) 0%, rgba(16, 185, 129, 0.09) 100%);
+    border: 1px solid rgba(56, 189, 248, 0.34);
+    border-left: 5px solid var(--sky);
+    border-radius: 14px;
+    padding: 18px 24px;
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    gap: 24px;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .collab-eyebrow {
+    font-size: 18.5px;
+    font-weight: 850;
+    color: var(--sky);
+    margin-bottom: 5px;
+  }
+  .collab-lead p {
+    font-size: 17.5px;
+    line-height: 1.42;
+    color: var(--text-mid);
+  }
+  .collab-qa {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .collab-qa-lbl {
+    font-size: 14.5px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    color: #6EE7B7;
+  }
+  .collab-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .collab-chip {
+    font-size: 15px;
+    font-weight: 650;
+    color: var(--text);
+    background: rgba(11, 15, 23, 0.65);
+    border: 1px solid rgba(148, 163, 184, 0.28);
+    border-radius: 8px;
+    padding: 6px 12px;
+  }
+
+  .close-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+  .close-who { font-size: 20px; color: var(--text-dim); }
+  .close-who strong { color: var(--text); }
+  .close-actions { display: flex; gap: 14px; }
+  .chip-btn {
+    background: var(--surface-2);
+    border: 1px solid var(--border-strong);
+    color: var(--text);
+    font-size: 17px;
+    font-weight: 700;
+    padding: 11px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .chip-btn:hover { border-color: var(--sky); color: var(--sky); }
+
+  /* Appendix tables, glossary, refs */
+  .table-wrap {
+    flex: 1;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+  }
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 19.5px;
+  }
+  .data-table th {
+    text-align: left;
+    padding: 14px 16px;
+    color: var(--sky);
+    border-bottom: 2px solid var(--border-strong);
+    font-weight: 800;
+  }
+  .data-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-mid);
+  }
+  .data-table td strong { color: var(--text); }
+  .data-table tr:last-child td { border-bottom: none; }
+
+  .gloss-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    align-content: center;
+  }
+  .gloss-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .gloss-item strong { font-size: 18.5px; color: var(--sky); font-weight: 800; }
+  .gloss-item span { font-size: 16.5px; line-height: 1.4; color: var(--text-mid); }
+
+  .ref-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    font-size: 20px;
+    line-height: 1.48;
+    color: var(--text-mid);
+  }
+  .ref-list strong { color: var(--text); }
+  .mono-url {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 18px;
+    color: var(--sky);
+  }
+
+  /* Color utilities */
+  .sky { color: var(--sky); }
+  .emerald { color: var(--emerald); }
+  .amber { color: var(--amber); }
+  .violet { color: var(--violet); }
+  .rose { color: var(--rose); }
+  .teal { color: var(--teal); }
+
+  /* Inline Glossary Tooltips */
+  .term {
+    border-bottom: 1.5px dotted var(--sky);
+    cursor: help;
+    position: relative;
+  }
+  #tooltip {
+    position: fixed;
+    z-index: 950;
+    max-width: 360px;
+    background: #0F172A;
+    border: 1px solid var(--sky);
+    color: var(--text);
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 14.5px;
+    line-height: 1.45;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.7);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.14s ease;
+  }
+  #tooltip.show { opacity: 1; }
+
+  /* Auto-hiding HUD */
+  #hud {
+    position: fixed;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 400;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(11, 15, 23, 0.88);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-strong);
+    padding: 7px 12px;
+    border-radius: 999px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.65);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  #hud.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(-50%) translateY(10px);
+  }
+  .hud-btn {
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--text-mid);
+    font-size: 13.5px;
+    font-weight: 700;
+    padding: 6px 11px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.14s ease;
+  }
+  .hud-btn:hover, .hud-btn.active {
+    background: rgba(56, 189, 248, 0.14);
+    border-color: rgba(56, 189, 248, 0.45);
+    color: var(--text);
+  }
+  .hud-sep { width: 1px; height: 18px; background: var(--border); margin: 0 2px; }
+  #hud-counter {
+    font-size: 13.5px;
+    font-weight: 800;
+    color: var(--text);
+    padding: 0 8px;
+    min-width: 78px;
+    text-align: center;
+  }
+
+  /* Speaker Notes Drawer */
+  #notes-drawer {
+    position: fixed;
+    right: 20px;
+    bottom: 72px;
+    width: 480px;
+    max-height: 52vh;
+    z-index: 450;
+    background: rgba(11, 15, 23, 0.96);
+    border: 1px solid var(--border-strong);
+    border-radius: 14px;
+    padding: 18px 22px;
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.8);
+    overflow-y: auto;
+  }
+  #notes-drawer.open { display: flex; }
+  .nd-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12.5px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    color: var(--sky);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 8px;
+  }
+  #nd-text { font-size: 15.5px; line-height: 1.58; color: var(--text-mid); }
+
+  /* Overview Grid */
+  #overview {
+    position: fixed;
+    inset: 0;
+    z-index: 600;
+    background: rgba(5, 8, 14, 0.96);
+    backdrop-filter: blur(8px);
+    display: none;
+    flex-direction: column;
+    padding: 28px 40px;
+    overflow-y: auto;
+    gap: 22px;
+  }
+  #overview.open { display: flex; }
+  .ov-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 14px;
+  }
+  .ov-top h2 { font-size: 24px; font-weight: 800; }
+  .ov-sec-title {
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--sky);
+    margin-bottom: 10px;
+  }
+  .ov-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 14px;
+  }
+  .ov-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 16px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    transition: all 0.14s ease;
+  }
+  .ov-card:hover { border-color: var(--sky); transform: translateY(-2px); }
+  .ov-card.current { border-color: var(--emerald); box-shadow: 0 0 0 1px var(--emerald); }
+  .ov-card-meta { display: flex; justify-content: space-between; font-size: 12px; font-weight: 800; color: var(--text-dim); text-transform: uppercase; }
+  .ov-card-title { font-size: 15.5px; font-weight: 700; color: var(--text); line-height: 1.32; }
+
+  /* Lightbox */
+  #lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 800;
+    background: rgba(5, 8, 14, 0.94);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 28px;
+    gap: 14px;
+    cursor: zoom-out;
+  }
+  #lightbox.open { display: flex; }
+  #lightbox img {
+    max-width: 94vw;
+    max-height: 84vh;
+    object-fit: contain;
+    border-radius: 10px;
+    border: 1px solid var(--border-strong);
+  }
+  #lightbox-cap { font-size: 17px; color: var(--text-mid); font-weight: 600; text-align: center; }
+
+  /* ===================== READER MODE (R) ===================== */
+  html.reader-mode,
+  body.reader-mode {
+    overflow: visible;
+    overflow-x: clip;
+    height: auto;
+    min-height: 100%;
+    background: #070B12;
+  }
+  body.reader-mode #viewport,
+  body.reader-mode #hud,
+  body.reader-mode #notes-drawer {
+    display: none;
+  }
+  #reader {
+    display: none;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 36px 28px 90px 28px;
+    flex-direction: column;
+    gap: 36px;
+  }
+  body.reader-mode #reader { display: flex; }
+  .rd-bar {
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    background: rgba(7, 11, 18, 0.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+  .rd-bar h1 { font-size: 20px; font-weight: 800; }
+  .rd-sec-banner {
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--amber);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 8px;
+    margin-top: 12px;
+  }
+  .rd-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .rd-head {
+    padding: 14px 22px;
+    background: var(--surface-2);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+  }
+  .rd-head strong { font-size: 18px; color: var(--text); }
+  .rd-head span { font-size: 13.5px; font-weight: 700; color: var(--sky); }
+  .rd-stage-wrap {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    position: relative;
+    overflow: hidden;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+  }
+  .rd-stage-inner {
+    width: 1920px;
+    height: 1080px;
+    transform-origin: top left;
+    position: absolute;
+    top: 0; left: 0;
+  }
+  .rd-stage-inner .slide {
+    display: flex !important;
+    position: static;
+    animation: none;
+  }
+  .rd-notes {
+    padding: 20px 26px;
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--text-mid);
+  }
+  .rd-notes-lbl {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.9px;
+    text-transform: uppercase;
+    color: var(--emerald);
+    margin-bottom: 6px;
+  }
+  @media print {
+    html.reader-mode, body.reader-mode { background: #070B12; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .rd-bar { display: none !important; }
+    #reader { padding: 0; gap: 20px; max-width: 100%; }
+    .rd-item { break-inside: avoid; page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div id="viewport">
+  <main id="deck" aria-live="polite">
+    
+    <section class="slide layout-ack" data-index="0" data-id="I-1" data-section="main" data-act="Intro" data-time="0:00–0:40" data-title="Acknowledgement of Country">
+      
+      <div class="s-body">
+        <div class="ack-wrap">
+          <div class="ack-rule"></div>
+          <h1 class="ack-title">Acknowledgement of Country</h1>
+          <div class="ack-copy">
+            <p>I acknowledge the <strong>Gadigal people of the Eora Nation</strong>, the Traditional Custodians of the land on which we meet today in Sydney.</p>
+            <p>I come from Meanjin (Brisbane), the lands of the <strong>Turrbal</strong> and <strong>Jagera/Yuggera</strong> peoples.</p>
+            <p>The field work in this talk was carried out on the lands of the <strong>Bidjara, Gunggari, Kooma, Wangkumara and Muruwari</strong> peoples.</p>
+            <p class="ack-respect">I pay my respects to their Elders past and present, and to all Aboriginal and Torres Strait Islander people here today.</p>
+          </div>
+          <div class="ack-rule"></div>
+        </div>
+      </div>
+      
+      <aside class="notes">Before we look at any maps or models, I would like to begin with an Acknowledgement of Country. I acknowledge the Gadigal people of the Eora Nation, the Traditional Custodians of the land on which we meet today in Sydney. I come from Meanjin — Brisbane — the lands of the Turrbal and Jagera/Yuggera peoples. The field work you will see in this talk was carried out across southern and inland Queensland, on the lands of the Bidjara, Gunggari, Kooma, Wangkumara and Muruwari peoples. I pay my respects to their Elders past and present, and to all Aboriginal and Torres Strait Islander people here today.</aside>
+    </section>
+    
+
+    <section class="slide layout-hero" data-index="1" data-id="I-2" data-section="main" data-act="Intro" data-time="0:40–1:00" data-title="From Static Ledgers to Living Processes">
+      
+      <div class="s-body">
+        <div class="hero-grid">
+          <div class="hero-left">
+            <div class="hero-event">GDG AI for Science Asia-Pacific DevFest · Sydney</div>
+            <h1 class="hero-title">From Static Ledgers<br>to Living Processes</h1>
+            <p class="hero-sub">Mapping land condition across Australia with one shared AI model — and teaching vision AI to notice what checklists miss.</p>
+            <div class="hero-author">
+              <div class="author-name">Dr Peter Scarth</div>
+              <div class="author-roles">Spatial &amp; Systems Scientist · Adjunct Associate Professor, The University of Queensland · Director, Cibo Labs · CTO, Ozius</div>
+            </div>
+            <div class="kpi-row">
+              <div class="kpi-card">
+                <div class="kpi-val sky">1.2 billion</div>
+                <div class="kpi-lbl">80 m pixels across Australia</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-val emerald">6 maps</div>
+                <div class="kpi-lbl">ecological &amp; grazing measures</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-val amber">1 shared model</div>
+                <div class="kpi-lbl">consistent from paddock to continent</div>
+              </div>
+            </div>
+          </div>
+          <div class="hero-right">
+            <div class="fig-box hero-map-box">
+              <img src="assets/map_continental_6maps.png" alt="Six continental land condition maps of Australia" data-zoom="Six continental land condition maps from one shared model">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="s-num">I-2</div>
+      <aside class="notes">Thanks everyone for coming along. Today I want to take you on a journey from continental satellite mapping right down to the soil surface in inland Queensland. Every patch of land answers many different questions — about biodiversity, native plants, tree cover, and grazing pasture. We now have one shared AI model that answers six of those questions consistently across 1.2 billion pixels of Australia. Yet as we built it, we kept running into a deeper limit: numbers alone still miss how land actually works. So in the final third of the talk, I will share some early research built on that foundation, where we ask vision AI to describe living landscape processes alongside a static checklist.</aside>
+    </section>
+    
+
+    <section class="slide layout-standard" data-index="2" data-id="I-3" data-section="main" data-act="Intro" data-time="1:00–2:00" data-title="Long science, grounded in the field">
+      
+        <header class="s-head">
+          <div class="s-title-wrap">
+            
+            <h2 class="s-title">Long science, grounded in the field</h2>
+            
+          </div>
+        </header>
+        
+      <div class="s-body">
+        <div class="bio-banner">
+          <div class="bio-quote">
+            <strong>Driven by &ldquo;long science&rdquo;:</strong> mathematical models that remain physically consistent from a local paddock to a global satellite swath — democratising spatial data for grounded land-management decisions.
+          </div>
+          <div class="bio-offclock">Off the clock: bikepacking, tweaking recipes, and classic trip-hop.</div>
+        </div>
+        <div class="grid-3 bio-photos">
+          <div class="photo-card">
+            <div class="fig-box"><img src="assets/ps2.jpg" alt="Flagged eucalypt woodland survey plot" class="cover" data-zoom="Field surveys across Queensland woodlands"></div>
+            <div class="photo-cap"><strong>Field surveys · Queensland Government</strong><span>Years measuring woodland structure across the state</span></div>
+          </div>
+          <div class="photo-card">
+            <div class="fig-box"><img src="assets/ps3.jpg" alt="Woodland field calibration beside a terrestrial laser scanner" class="cover" data-zoom="Ground-to-orbit physics with terrestrial LiDAR"></div>
+            <div class="photo-cap"><strong>Ground-to-orbit physics</strong><span>Linking paddock LiDAR, radar &amp; optical data to continental models</span></div>
+          </div>
+          <div class="photo-card">
+            <div class="fig-box"><img src="assets/ps1_web.jpg" alt="Dr Peter Scarth walking through dry woodland in Cibo Labs field shirt" class="cover pos-top" data-zoom="Applied long science in dry woodland"></div>
+            <div class="photo-cap"><strong>Applied &ldquo;long science&rdquo;</strong><span>Adjunct Assoc. Prof. (UQ) · Director (Cibo Labs) · CTO (Ozius)</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="s-num">I-3</div>
+      <aside class="notes">A quick bit of context on who I am and why I care about getting the ground truth right. I started out as a jackaroo, spent years with the Queensland Government surveying woodlands across the state, and now bridge The University of Queensland with Cibo Labs and Ozius. I am driven by what I call long science — mathematical models that stay physically consistent from one paddock to an entire continent, so people on the ground can actually trust what a satellite map tells them. This talk is about what those maps count, the practical traps we hit when training AI on real landscapes, and what static numbers still miss.</aside>
+    </section>
+    
+
+    <section class="slide layout-standard" data-index="3" data-id="1" data-section="main" data-act="Act 1 · The problem" data-time="2:00–3:15" data-title="Everyone asks a different question about the same patch of land">
+      
+        <header class="s-head">
+          <div class="s-title-wrap">
+            
+            <h2 class="s-title">Everyone asks a different question about the same patch of land</h2>
+            
+          </div>
+        </header>
+        
+      <div class="s-body">
+        <div class="split-2">
+          <div class="panel">
+            <div class="panel-hd sky">Five people look at one 80 m pixel</div>
+            <div class="user-list">
+              <div class="user-row"><span class="dot sky"></span><div><strong>Ecologist</strong> — Does it still have its native tree layers and habitats?</div></div>
+              <div class="user-row"><span class="dot emerald"></span><div><strong>Pastoralist</strong> — Will this paddock grow perennial forage and hold soil?</div></div>
+              <div class="user-row"><span class="dot amber"></span><div><strong>Carbon &amp; fire planner</strong> — How much canopy cover and fuel structure is there?</div></div>
+              <div class="user-row"><span class="dot violet"></span><div><strong>Botanist</strong> — Are the plants native species, or introduced pasture grasses?</div></div>
+              <div class="user-row"><span class="dot teal"></span><div><strong>Regional manager</strong> — How intact is this landscape compared with undisturbed sites nearby?</div></div>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-hd emerald">Six plain-English measures we need together</div>
+            <div class="measure-grid">
+              <div class="m-card"><span class="m-num">1</span><div><strong>Ecological Structure</strong><small>Tree layers, fallen timber &amp; habitat complexity</small></div></div>
+              <div class="m-card"><span class="m-num">2</span><div><strong><span class="term" data-tip="How intact a landscape remains relative to minimal human disturbance across its region.">Ecosystem Intactness</span></strong><small>Overall freedom from clearing &amp; disturbance</small></div></div>
+              <div class="m-card"><span class="m-num">3</span><div><strong><span class="term" data-tip="How closely a patch matches the least-disturbed benchmark sites inside its own bioregion.">Climax Similarity</span></strong><small>Match to undisturbed sites in the same region</small></div></div>
+              <div class="m-card"><span class="m-num">4</span><div><strong>Native Plant Mix</strong><small>Share of native versus introduced plant species</small></div></div>
+              <div class="m-card"><span class="m-num">5</span><div><strong><span class="term" data-tip="Pastoral grazing land condition, rated from Grade A (best perennial pasture and stable soil) to Grade D (severely degraded).">Grazing Condition</span></strong><small>Pasture health &amp; soil stability (Grades A–D)</small></div></div>
+              <div class="m-card"><span class="m-num">6</span><div><strong>Tree Canopy Cover</strong><small>Percentage of ground shaded by woody crowns</small></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="s-num">1</div>
+      <aside class="notes">If you stand in a paddock anywhere in Australia and ask &#x27;Is this land healthy?&#x27;, the answer depends entirely on who is asking. An ecologist looks up at multi-layered native trees, hollows, and fallen logs. A pastoralist looks down at perennial tussock grasses and whether rain soaks in or runs off. A carbon or fire planner wants accurate tree canopy cover. A botanist wants to know whether the plants are native species or introduced grasses. Historically, each agency built its own single-purpose map, with its own definitions, training sites, and blind spots. That left land managers juggling six separate maps that did not agree with one another. Our first goal was simple to state and tricky to engineer: estimate all six of these plain-English measures from one consistent, shared model.</aside>
+    </section>
+    
+
+    <section class="slide layout-standard" data-index="4" data-id="2" data-section="main" data-act="Act 1 · The problem" data-time="3:15–4:30" data-title="Today&#x27;s official maps of the same place often disagree">
+      
+        <header class="s-head">
+          <div class="s-title-wrap">
+            
+            <h2 class="s-title">Today&#x27;s official maps of the same place often disagree</h2>
+            
+          </div>
+        </header>
+        
+      <div class="s-body">
+        <div class="split-wide-left">
+          <div class="fig-box">
+            <img src="assets/chart_official_maps_disagree.png" alt="Scatter plot comparing Ecosystem Intactness and Ecological Structure across 2.9 million overlapping pixels" data-zoom="Two official maps disagree by an average of ~20 points out of 100">
+          </div>
+          <div class="side-col">
+            <div class="stat-card amber">
+              <div class="stat-big">~20 pts</div>
+              <div class="stat-desc">Average gap out of 100 when converting one official map into the other across <strong>2.9 million</strong> shared locations.</div>
+            </div>
+            <div class="photo-card compact">
+              <div class="fig-box"><img src="assets/site_95.jpg" alt="Spinifex and red sand dune near Windorah" class="cover" data-zoom="Site 95 · Windorah — undisturbed desert dune"></div>
+              <div class="photo-cap"><strong>Site 95 · Windorah</strong><span>An intact native desert dune can look &ldquo;bare&rdquo; to a single-purpose checklist — and get misread as degraded land.</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="s-num">2</div>
+      <aside class="notes">Here is what happens when you lay two respected official maps on top of each other across nearly three million shared locations in Queensland. On the horizontal axis is a national measure of ecosystem intactness, known as HCAS. On the vertical axis is Queensland&#x27;s field-calibrated ecological structure score, BioCondition. Both run from zero to one hundred, and people routinely assume they measure the same thing. In practice, converting one map into the other misses by an average of about twenty points out of a hundred. Look at the photo on the right from near Windorah: an undisturbed red sand dune with native spinifex. Ecologically it is intact, yet a map that equates bare ground with degradation or grazing decline will score it harshly. When different maps send opposite signals for the same hectare, trust breaks down fast.</aside>
+    </section>
+    
+
+    <section class="slide layout-standard" data-index="5" data-id="3" data-section="main" data-act="Act 2 · The condition model" data-time="4:30–5:45" data-title="AlphaEarth gives every 10 m of Earth a 64-number fingerprint">
+      
+        <header class="s-head">
+          <div class="s-title-wrap">
+            
+            <h2 class="s-title">AlphaEarth gives every 10 m of Earth a 64-number fingerprint</h2>
+            
+          </div>
+        </header>
+        
+      <div class="s-body">
+        <div class="stack-visual">
+          <div class="fig-box main-fig">
+            <img src="assets/svg_alphaearth_fingerprint.svg" alt="Diagram explaining how AlphaEarth compresses a year of multi-sensor satellite data into a 64-number fingerprint" data-zoom="AlphaEarth 64-number annual satellite fingerprint">
+          </div>
+          <div class="strip-3">
+            <div class="mini-card">
+              <strong class="sky">All-weather view</strong>
+              <span>Fuses a full year of optical, radar, thermal, and elevation data into one clean summary.</span>
+            </div>
+            <div class="mini-card">
+              <strong class="emerald">Compact geometry</strong>
+              <span>Every 10 m pixel becomes a unit-length 64-number direction — ready for fast neural models.</span>
+            </div>
+            <div class="mini-card">
+              <strong class="amber">Continental reach</strong>
+              <span>Removes clouds and seasonal noise before our condition model even starts learning.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="s-num">3</div>
+      <aside class="notes">So what changed to make a unified continental model practical? Instead of hand-crafting dozens of seasonal vegetation indices from raw cloudy satellite scenes, we start from AlphaEarth Foundations — an Earth-observation embedding model from Google DeepMind. AlphaEarth reads a full year of optical imagery, cloud-penetrating radar, thermal bands, climate, and elevation, and compresses every ten-metre patch of land into a 64-number fingerprint on a unit sphere. You can think of it like a word embedding for landscapes: places with similar vegetation structure, soil moisture, and seasonal rhythm point in similar directions in that 64-dimensional space. For an ML team, this is huge — it means our downstream condition model can stay compact, fast, and focused entirely on learning ecological and pastoral meaning rather than fighting clouds.</aside>
+    </section>
+    
+
+    <section class="slide layout-standard" data-index="6" data-id="4" data-section="main" data-act="Act 2 · The condition model" data-time="5:45–7:15" data-title="One shared network learns all six maps at once">
+      
+        <header class="s-head">
+          <div class="s-title-wrap">
+            
+            <h2 class="s-title">One shared network learns all six maps at once</h2>
+            
+          </div>
+        </header>
+        
+      <div class="s-body">
+        <div class="stack-visual">
+          <div class="fig-box main-fig">
+            <img src="assets/svg_shared_trunk_simple.svg" alt="Simple three-column architecture: satellite fingerprint plus local bioregion benchmark into a shared network trunk producing six separate maps" data-zoom="Shared multi-task condition model architecture">
+          </div>
+          <div class="strip-2">
+            <div class="mini-card">
+              <strong class="sky">Local bioregion benchmark</strong>
+              <span>Each pixel is compared against the least-disturbed reference sites inside its own <span class="term" data-tip="An ecologically distinct geographic region (IBRA) with its own climate, soils, and native vegetation.">bioregion</span> — so arid woodland is never judged against rainforest.</span>
+            </div>
+            <div class="mini-card">
+              <strong class="amber">Strict ecological-to-grazing firewall</strong>
+              <span>Undisturbed climax sites train the ecological heads, never the grazing head — preventing deserts from being scored as prime pasture.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="s-num">4</div>
+      <aside class="notes">Here is the heart of the condition model in three steps. On the left, every pixel brings two things: its 64-number AlphaEarth fingerprint, and how similar that fingerprint is to undisturbed reference sites inside its own bioregion. That local benchmark matters enormously in Australia, because a healthy arid woodland looks nothing like a coastal rainforest. In the middle, a single shared neural network trunk compresses those inputs into a common internal representation of the landscape. On the right, six specialised heads branch off to predict Ecological Structure, Ecosystem Intactness, Climax Similarity, Native Plant Mix, Grazing Condition, and Tree Canopy Cover. Notice the amber firewall on the grazing branch: ecological climax benchmarks are strictly blocked from training the grazing head. In a moment you will see why that single architectural rule saved the entire continental map.</aside>
+    </section>
+    
+
+    <section class="slide layout-standard" data-index="7" data-id="5" data-section="main" data-act="Act 2 · The condition model" data-time="7:15–8:30" data-title="We check the model against what people see on the ground">
+      
+        <header class="s-head">
+          <div class="s-title-wrap">
+            
+            <h2 class="s-title">We check the model against what people see on the ground</h2>
+            
+          </div>
+        </header>
+        
+      <div class="s-body">
+        <div class="split-2">
+          <div class="video-panel">
+            <div class="video-frame" id="drive-video-wrap" title="Click to pause or resume">
+              <video id="drive-video" muted loop playsinline preload="metadata" poster="assets/eulo_cunnamulla_drive_poster.jpg">
+                <source src="assets/eulo_cunnamulla_drive_loop.mp4" type="video/mp4">
+              </video>
+              <div class="video-badge" id="drive-video-badge">Playing · click to pause</div>
+            </div>
+            <div class="legend-strip">
+              <span class="leg-title">Eulo → Cunnamulla drive · predicted tree canopy</span>
+              <div class="leg-scale">
+                <span><i class="sw" style="background:#E2E8F0"></i>Claypan</span>
+                <span><i class="sw" style="background:#EA580C"></i>Low</span>
+                <span><i class="sw" style="background:#84CC16"></i>Moderate</span>
+                <span><i class="sw" style="background:#15803D"></i>Dense</span>
+              </div>
+            </div>
+          </div>
+          <div class="side-col">
+            <div class="fig-box" style="flex:1;">
+              <img src="assets/map_swq_validation.png" alt="South-West Queensland field validation map showing 83 unseen field sites and the Eulo to Cunnamulla drive" data-zoom="83 unseen South-West Queensland field sites">
+            </div>
+            <div class="mini-card">
+              <strong class="emerald">Independent field checks</strong>
+              <span>Validated against <strong>83 unseen field sites</strong> at least 15 km from any training site, ~3,600 woody-cover transects, and botanical survey plots across Australia.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="s-num">5</div>
+      <aside class="notes">Satellite maps are only as trustworthy as the boots-on-the-ground checks behind them. On the left is a looping clip from an evaluation drive along Adventure Way between Eulo and Cunnamulla in South-West Queensland. The dashcam view at the top moves in lockstep with the yellow vehicle marker on our predicted tree canopy map underneath — light grey and orange over open claypans, shifting into rich green as we drive through mulga and box woodlands. On the right is our independent field validation across South-West Queensland: 83 paddock sites assessed on the ground, every single one at least fifteen kilometres away from any site used to train the model. We pair those paddock checks with roughly three thousand six hundred field canopy transects and national botanical survey plots, so every head faces an honest out-of-sample test.</aside>
+    </section>
+    
+
+    <section class="slide layout-standard" data-index="8" data-id="6" data-section="main" data-act="Act 3 · Three lessons &amp; results" data-time="8:30–10:00" data-title="Lesson 1 — A pristine ecosystem is not necessarily good pasture">
+      
+        <header class="s-head">
+          <div class="s-title-wrap">
+            
+            <h2 class="s-title">Lesson 1 — A pristine ecosystem is not necessarily good pasture</h2>
+            
+          </div>
+        </header>
+        
+      <div class="s-body">
+        <div class="split-wide-right">
+          <div class="side-col">
+            <div class="photo-card compact">
+              <div class="fig-box"><img src="assets/site_95.jpg" alt="Spinifex sand dune near Windorah" class="cover" data-zoom="Intact desert dune: high native biodiversity, very low pasture value"></div>
+              <div class="photo-cap"><strong>Undisturbed desert dune</strong><span>High ecological intactness — almost zero grazing pasture.</span></div>
+            </div>
+            <div class="photo-card compact">
+              <div class="fig-box"><img src="assets/site_61.jpg" alt="Open grass pasture in mulga and box woodland" class="cover" data-zoom="Productive open pasture: high grazing forage, altered tree layer"></div>
+              <div class="photo-cap"><strong>Open grass pasture</strong><span>Strong grazing forage — reduced native tree cover.</span></div>
+            </div>
+          </div>
+          <div class="stack-visual">
+            <div class="fig-box main-fig">
+              <img src="assets/chart_pasture_direction_flip.png" alt="Bar chart comparing correlations with field grazing grades across 83 unseen sites: existing maps are negative while the shared condition model is positive" data-zoom="Existing maps score unseen pasture in the wrong direction">
+            </div>
+            <div class="mini-card">
+              <strong class="emerald">Result on 83 unseen field sites</strong>
+              <span>Existing ecological maps rated better pasture <em>lower</em>. Keeping grazing supervision strictly separate gets the direction right, with <strong>9 in 10</strong> predictions within one grade of the field assessment.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="s-num">6</div>
+      <aside class="notes">That brings us to three hard-won ML lessons from building this at continental scale. Lesson one is a domain truth that broke our earliest prototypes: a pristine ecosystem is not the same thing as good grazing pasture. Look at the two photos on the left. An undisturbed spinifex dune scores near the top for ecological intactness, but it is not Grade A grazing land. Conversely, an open grass paddock can carry stock well while having far fewer trees than a climax woodland. When we tested existing national ecological maps against those 83 unseen grazing sites in South-West Queensland, both maps actually correlated negatively — they rated better pasture lower! Once we quarantined grazing supervision exclusively to real paddock assessments, the model flipped to the right direction, removed systematic bias, and landed nine out of ten unseen sites within one grazing grade.</aside>
+    </section>
+    
+
+    <section class="slide layout-standard" data-index="9" data-id="7" data-section="main" data-act="Act 3 · Three lessons &amp; results" data-time="10:00–11:15" data-title="Lesson 2 — Optimisers cheat unless you stop them">
+      
+        <header class="s-head">
+          <div class="s-title-wrap">
+            
+            <h2 class="s-title">Lesson 2 — Optimisers cheat unless you stop them</h2>
+            
+          </div>
+        </header>
+        
+      <div class="s-body">
+        <div class="stack-visual">
+          <div class="fig-box main-fig">
+            <img src="assets/chart_fair_objective.png" alt="Comparison of weighted-loss gaming versus fair unweighted multi-task validation" data-zoom="Why tuning task weights requires a fair unweighted validation score">
+          </div>
+          <div class="strip-2">
+            <div class="mini-card">
+              <strong class="rose">The shortcut we caught</strong>
+              <span>If a hyperparameter search scores a <em>weighted</em> loss, it shrinks the weight on the hardest task (grazing) to make its score look better — starving that task of learning.</span>
+            </div>
+            <div class="mini-card">
+              <strong class="emerald">Two safeguards that fixed it</strong>
+              <span>Score every search run on an <strong>unweighted</strong> sum of errors across all six tasks, and hold out entire distant regions so nearby pixels cannot leak answers across folds.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="s-num">7</div>
+      <aside class="notes">Lesson two will feel painfully familiar to anyone who trains multi-task neural networks: optimisers are ruthless shortcut finders. We wanted to tune the relative loss weights balancing our six tasks. On our first attempt, we asked a Bayesian search to minimise the weighted validation loss. It looked brilliant on paper — until we inspected what it did. Instead of making the grazing head more accurate, the optimiser simply slashed the grazing task weight close to zero, starving it of gradients so the total weighted number dropped! Switching the search objective to an unweighted error across all six tasks shut that loophole completely. We paired that with spatially blocked cross-validation — holding out whole regions rather than random pixels — because nearby pixels share soil and weather, and random splits wildly flatter geospatial models.</aside>
+    </section>
+    
+
+    <section class="slide layout-standard" data-index="10" data-id="8" data-section="main" data-act="Act 3 · Three lessons &amp; results" data-time="11:15–12:15" data-title="Lesson 3 — Gemini VLMs turn paddock photos into structured data">
+      
+        <header class="s-head">
+          <div class="s-title-wrap">
+            
+            <h2 class="s-title">Lesson 3 — Gemini VLMs turn paddock photos into structured data</h2>
+            
+          </div>
+        </header>
+        
+      <div class="s-body">
+        <div class="stack-visual">
+          <div class="fig-box main-fig">
+            <img src="assets/svg_landlens_vlm_pipeline.svg" alt="LandLens Gemini vision-language model pipeline turning geotagged field photos and rainfall context into structured grazing condition ratings and verb-based landscape process readings" data-zoom="LandLens Gemini VLM grounded ecological reasoning pipeline">
+          </div>
+          <div class="strip-2">
+            <div class="mini-card">
+              <strong class="emerald">Grounded visual reasoning at scale</strong>
+              <span>Given rainfall history and explicit agronomy rules, Gemini VLMs separate drought dormancy from overgrazing, exclude road verges, and emit auditable <strong>Evidence → Reasoning → Conclusion</strong> JSON.</span>
+            </div>
+            <div class="mini-card">
+              <strong class="sky">One workflow, two data streams</strong>
+              <span><strong>LandLens</strong> added ~5,900 grazing photo ratings (fixing rare Grade D imbalance), and the exact same structured prompting approach powers our verb-based readings next <em>(roadside GPS geometry in Appendix A5)</em>.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="s-num">8</div>
+      <aside class="notes">Lesson three is about how much frontier vision-language models have changed what is possible with field photography. Traditional agronomist transects cost thousands of dollars per site and rarely capture severely degraded paddocks — leaving our grazing head starved of Grade D examples. So we built LandLens, a Gemini VLM application driven by a detailed, domain-grounded land-condition prompt. Crucially, we do not just hand the model a raw photo and ask for a letter grade. We inject the date, bioregion, three-month rainfall decile, and twelve-month rainfall deficit or surplus — so the VLM knows when brown grass is healthy drought dormancy versus overgrazing. We require it to mask out road shoulders, check perennial tussock crowns against annuals and look-alike weeds, and output strict JSON with an Evidence, Reasoning, and Conclusion trace for every pillar. Modern Gemini VLMs are now remarkably strong at this kind of structured visual reasoning: combining roughly five thousand nine hundred LandLens assessments with two thousand agronomist transects lifted rare Grade D training sites to about eleven hundred, correcting severe class imbalance — and as you are about to see, the exact same structured VLM workflow also generates our verb-based landscape process data. We still filter roadside GPS geometry carefully — those details are in Appendix A5 if you want to dig into them.</aside>
+    </section>
+    
+
+    <section class="slide layout-standard" data-index="11" data-id="9" data-section="main" data-act="Act 3 · Three lessons &amp; results" data-time="12:15–13:45" data-title="Training six tasks together beats six separate models">
+      
+        <header class="s-head">
+          <div class="s-title-wrap">
+            
+            <h2 class="s-title">Training six tasks together beats six separate models</h2>
+            
+          </div>
+        </header>
+        
+      <div class="s-body">
+        <div class="stack-visual">
+          <div class="fig-box main-fig">
+            <img src="assets/chart_multitask_vs_single.png" alt="Two-panel bar chart showing the shared six-task model halving tree-cover error and cutting false native alarms on cleared land from 76% to 9%" data-zoom="Shared multi-task model versus single-task baselines">
+          </div>
+          <div class="strip-2">
+            <div class="mini-card">
+              <strong class="emerald">Tree-cover error roughly halved</strong>
+              <span>Across ~3,600 independent field canopy survey lines, average error drops from <strong>6.1%</strong> (national canopy map) and <strong>4.9%</strong> (single-task GBDT) down to <strong>3.4%</strong>.</span>
+            </div>
+            <div class="mini-card">
+              <strong class="sky">Clean rejection on cleared &amp; urban land</strong>
+              <span>False &ldquo;native vegetation&rdquo; scores on cleared land fall from <strong>76%</strong> (single-task botanical GBDT) and <strong>29%</strong> (legacy map) to <strong>9%</strong>.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="s-num">9</div>
+      <aside class="notes">A natural ML question is: why not just train six separate specialist models? We ran a head-to-head comparison giving every model the exact same satellite inputs. On the left, evaluated across roughly three thousand six hundred field canopy survey lines, average tree-cover error drops from six point one percent for the national map and four point nine percent for a single-task gradient-boosted decision tree down to three point four percent for our shared model — roughly cutting the error in half. On the right, look at false native-vegetation alarms on cleared paddocks and urban land. A single-task GBDT trained only on botanical survey plots hallucinates seventy-six percent native cover on cleared ground because botanists rarely survey car parks! Sharing a trunk with canopy cover and intactness teaches the network what clearing looks like, knocking false alarms down to nine percent.</aside>
+    </section>
+    
+
+    <section class="slide layout-standard" data-index="12" data-id="10" data-section="main" data-act="Act 3 · Three lessons &amp; results" data-time="13:45–15:00" data-title="Six continental maps from one GPU run">
+      
+        <header class="s-head">
+          <div class="s-title-wrap">
+            
+            <h2 class="s-title">Six continental maps from one GPU run</h2>
+            
+          </div>
+        </header>
+        
+      <div class="s-body">
+        <div class="stack-visual">
+          <div class="fig-box main-fig">
+            <img src="assets/map_continental_6maps.png" alt="Six 80 m continental land condition maps covering all of Australia" data-zoom="Six continental 80 m maps generated in ~40 minutes">
+          </div>
+          <div class="strip-3">
+            <div class="mini-card"><strong class="sky">1.2 billion pixels</strong><span>Full continental coverage at 80 m resolution from coast to centre.</span></div>
+            <div class="mini-card"><strong class="emerald">~40 minutes on 1 GPU</strong><span>One portable ~3 MB model produces all six consistent layers together.</span></div>
+            <div class="mini-card"><strong class="amber">No more &ldquo;desert pasture&rdquo;</strong><span>Ecological intactness stays high in arid zones without inflating grazing grades.</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="s-num">10</div>
+      <aside class="notes">Put all of those fixes together and here is the continental output: six aligned eighty-metre maps covering 1.2 billion valid pixels of Australia, produced in about forty minutes on a single cloud GPU from a small, portable model. Top row, left to right: Ecological Structure, Ecosystem Intactness, and Climax Similarity. Bottom row: Native Plant Mix, Grazing Condition, and Tree Canopy Cover. Notice the contrast between Ecosystem Intactness and Grazing Condition across the arid interior: the desert dunes and central ranges remain ecologically intact, without falsely lighting up as prime Grade A grazing pasture. And every layer shares the exact same spatial grammar, so landholders, ecologists, and planners are finally looking at one coherent picture.</aside>
+    </section>
+    
+
+    <section class="slide layout-standard" data-index="13" data-id="11" data-section="main" data-act="Act 4 · Early research" data-time="15:00–16:30" data-title="Nouns count things; verbs describe what land is doing">
+      
+        <header class="s-head">
+          <div class="s-title-wrap">
+            <div class="s-kicker">Early research · built on the condition model</div>
+            <h2 class="s-title">Nouns count things; verbs describe what land is doing</h2>
+            <div class="s-sub">The condition model gives us consistent numbers. Here is where numbers alone still fall short.</div>
+          </div>
+        </header>
+        
+      <div class="s-body">
+        <div class="position-box">
+          This work is <strong>inspired by verb-centred grammar</strong>. It does <strong>not</strong> represent or speak for First Nations knowledge. It looks at how <strong>verb-centred</strong> and <strong>noun-centred</strong> languages frame environmental and landscape processes differently. That contrast is the same as the difference between a <strong>checklist view</strong> of Country and a <strong>process view</strong>.
+        </div>
+        <div class="split-2">
+          <div class="fig-box">
+            <img src="assets/wordcloud_checklist_nouns.png" alt="Word cloud of checklist nouns blocked during the first pass of reading a field photo" data-zoom="Step 1 blocks static checklist nouns">
+          </div>
+          <div class="fig-box">
+            <img src="assets/wordcloud_holding_losing_verbs.png" alt="Word cloud comparing Holding verbs (green) and Losing verbs (amber and coral)" data-zoom="Holding verbs versus Losing verbs">
+          </div>
+        </div>
+        <div class="mini-card inline-note">
+          <strong class="amber">Why two steps?</strong>
+          <span>Using the same Gemini VLM workflow from LandLens, Step 1 blocks checklist nouns so the model describes visible physical actions before assigning scores.</span>
+        </div>
+      </div>
+      <div class="s-num">11</div>
+      <aside class="notes">Now I want to pivot — and be completely upfront that this final third of the talk is early research built on top of our condition model. The condition model gives us consistent numbers. Here is where numbers alone still fall short. Before showing how we built this experiment, I want to be crystal clear about what it is and what it is not. This work is inspired by verb-centred grammar. It does not represent or speak for First Nations knowledge. It looks at how verb-centred and noun-centred languages frame environmental and landscape processes differently. That contrast is the same as the difference between a checklist view of Country and a process view. Most scientific monitoring is noun-heavy: count trees, measure grass percent, tally bare soil. That tells you what is sitting there at a single instant, not what is actively happening to water, soil, and shade. Using the exact same Gemini vision-language workflow behind LandLens, we discovered that free-form prompts slipped straight back into checklists or invented unsupported stories. So we designed a two-step prompt: Step 1 blocks checklist nouns completely and asks only for observable physical actions — Holding verbs like root-knitting, percolating, and arch-shading where water, soil, and shade are kept, versus Losing verbs like hard-setting, crusting, and sheet-stripping where they drain away.</aside>
+    </section>
+    
+
+    <section class="slide layout-standard" data-index="14" data-id="12" data-section="main" data-act="Act 4 · Early research" data-time="16:30–18:15" data-title="The same ground through two views">
+      
+        <header class="s-head">
+          <div class="s-title-wrap">
+            <div class="s-kicker">Early research · built on the condition model</div>
+            <h2 class="s-title">The same ground through two views</h2>
+            
+          </div>
+        </header>
+        
+      <div class="s-body">
+        <div class="tab-bar" id="regime-tabs" role="tablist" aria-label="Landscape process regimes">
+          <button class="tab-btn active" data-idx="0">1 · Intact processes</button>
+          <button class="tab-btn" data-idx="1">2 · Masked (looks good, losing structure)</button>
+          <button class="tab-btn" data-idx="2">3 · Disrupted</button>
+          <button class="tab-btn" data-idx="3">4 · Highly disrupted</button>
+        </div>
+        <div class="regime-stage" id="regime-stage"></div>
+      </div>
+      <div class="s-num">12</div>
+      <aside class="notes">When we run that verb-centred Gemini prompt across 136 field photos, four clear physical regimes emerge — you can click the tabs or press keys 1 to 4 to compare the checklist view and the process view side by side. Regime 1, Intact processes: Site 95 near Windorah is that spinifex sand dune — a grazing checklist grades it D, yet the process view sees deep sand percolating rain and spinifex root-knitting the slope, giving low Process Stress of 1.6 out of 10. Carnarvon Gorge beside it scores 1.1. Regime 2, Masked: Site 08 at Morven and Site 61 look green and grassy, so checklists rate them well, yet the process view flags missing overstorey trees and baking air above the grass — Process Stress around 4 out of 10. Regime 3, Disrupted: Site 51 at Nebine still has remnant trees that boost a canopy checklist, while glazed clay pans shed runoff between groves; Site 70 shows pulled mulga slash. Regime 4, Highly disrupted: Site 54 at Bollon and Site 132 at Lower Mount Walker show hard-set, crusting, pan-smearing surfaces with Process Stress above 8 — yet even there, the process view spots fallen branches acting as tiny soil-catching micro-sinks.</aside>
+    </section>
+    
+
+    <section class="slide layout-standard" data-index="15" data-id="13" data-section="main" data-act="Act 4 · Early research" data-time="18:15–19:30" data-title="Some top-rated pasture is quietly losing its trees">
+      
+        <header class="s-head">
+          <div class="s-title-wrap">
+            <div class="s-kicker">Early research · built on the condition model</div>
+            <h2 class="s-title">Some top-rated pasture is quietly losing its trees</h2>
+            
+          </div>
+        </header>
+        
+      <div class="s-body">
+        <div class="split-2">
+          <div class="photo-card">
+            <div class="fig-box"><img src="assets/site_08.jpg" alt="Site 08 near Morven showing thick buffel grass with cleared overstorey trees" class="cover" data-zoom="Site 08 · Morven — Grade A pasture on paper, missing its tree canopy"></div>
+            <div class="photo-cap"><strong>Site 08 · Morven — thick grass, missing trees</strong><span>Rated <strong>Grade A</strong> pasture after good rain — yet shade trees have been cleared and surface cover masks deeper structural loss.</span></div>
+          </div>
+          <div class="fig-box">
+            <img src="assets/chart_checklist_paradox.png" alt="Stacked bar chart of 136 field-photo sites showing about 1 in 3 Grade A pasture sites are Masked or Disrupted underneath" data-zoom="About 1 in 3 Grade A pasture sites hide missing tree structure">
+          </div>
+        </div>
+      </div>
+      <div class="s-num">13</div>
+      <aside class="notes">Now put those four process regimes directly alongside standard grazing grades across all 136 field-photo sites, and a striking pattern jumps out. Look back at Site 08 near Morven on the left. After a wet season, thick introduced buffel grass covers the ground, so a pastoral checklist gives it top marks — Grade A. Yet look at the horizon: the multi-layered woodland trees that shelter the soil, cool the air, and anchor deep moisture are gone. Across the 136 sites on the right, roughly one in three Grade A pasture sites — thirty-eight percent — turn out to be Masked or Disrupted underneath, while more than half of Grade B sites are Masked. That is the exact blind spot a process view begins to uncover.</aside>
+    </section>
+    
+
+    <section class="slide layout-standard" data-index="16" data-id="14" data-section="main" data-act="Act 4 · Early research" data-time="19:30–20:30" data-title="How we check the process view">
+      
+        <header class="s-head">
+          <div class="s-title-wrap">
+            <div class="s-kicker">Early research · built on the condition model</div>
+            <h2 class="s-title">How we check the process view</h2>
+            
+          </div>
+        </header>
+        
+      <div class="s-body">
+        <div class="split-2">
+          <div class="fig-box">
+            <img src="assets/chart_process_validation.png" alt="Held-out cross-validation results across 136 field sites showing moderate agreement (0.42-0.45) and above-chance detection (0.64-0.66)" data-zoom="Honest early validation across 136 field sites">
+          </div>
+          <div class="fig-box">
+            <img src="assets/svg_four_planes_guardrails.svg" alt="Diagram of the four physical landscape planes and strict language guardrails" data-zoom="Four physical planes and strict language guardrails">
+          </div>
+        </div>
+        <div class="mini-card inline-note">
+          <strong class="sky">Honest framing:</strong>
+          <span>Probing verb-guided photo assessments across 136 held-out sites from satellite trunk features alone (no condition-map shortcuts) yields <strong>moderate</strong> agreement — promising as an early signal, not yet an operational grade.</span>
+        </div>
+      </div>
+      <div class="s-num">14</div>
+      <aside class="notes">Whenever you introduce a new lens like this, the most important question is: can satellites actually detect it, and how honest is the validation? We took the 136 ground-photo Process Stress labels generated by our two-step verb-guided vision model and trained a lightweight satellite probe solely on the shared internal features of our condition model — deliberately withholding the condition maps themselves so the probe could not take shortcuts. On held-out cross-validation across those 136 sites, agreement is moderate: 0.42 concordance on Process Stress, 0.45 correlation on the gap between tree structure and surface cover, and 0.64 to 0.66 detection scores for flagging Masked and Highly disrupted sites — clearly above chance, and promising as an early cross-modal result, though still needing broader spatially independent field tests before any operational use. On the right, every reading is anchored to four concrete physical planes — soil and subsurface, surface water, tree canopy, and fire — with strict language guardrails so the model is never allowed to invent cultural, ceremonial, or ownership claims.</aside>
+    </section>
+    
+
+    <section class="slide layout-standard" data-index="17" data-id="15" data-section="main" data-act="Act 4 · Early research" data-time="20:30–21:45" data-title="Mapping Process Stress across 650,000 km²">
+      
+        <header class="s-head">
+          <div class="s-title-wrap">
+            <div class="s-kicker">Early research · built on the condition model</div>
+            <h2 class="s-title">Mapping Process Stress across 650,000 km²</h2>
+            
+          </div>
+        </header>
+        
+      <div class="s-body">
+        <div class="stack-visual">
+          <div class="fig-box main-fig">
+            <img src="assets/map_mitchell_process_stress.png" alt="Two-panel map of the 650,000 square kilometre Mitchell corridor showing Process Stress and the four dominant landscape process regimes" data-zoom="Early research: Process Stress across ~650,000 km²">
+          </div>
+          <div class="strip-3">
+            <div class="mini-card"><strong class="emerald">43% Intact processes</strong><span>Mostly woody ranges, spinifex dunes, and intact mulga landscapes.</span></div>
+            <div class="mini-card"><strong class="amber">38% Masked</strong><span>Cleared grazing downs where lush grass hides missing overstorey structure.</span></div>
+            <div class="mini-card"><strong class="violet">20% Disrupted / Highly disrupted</strong><span>Early map signal flagging priority zones for on-ground checking, not final grades.</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="s-num">15</div>
+      <aside class="notes">When we project that early satellite probe across the roughly six hundred and fifty thousand square kilometre Mitchell corridor — spanning inland Queensland from the desert channels east toward Roma — a striking spatial pattern emerges. On the left is continuous Process Stress from zero to eight, with our 136 field-photo sites plotted as white dots. On the right is the dominant landscape regime. About forty-three percent maps as Intact processes, concentrated in the woody ranges and spinifex dunes. Roughly thirty-eight percent maps as Masked — open grazing downs where good ground cover masks simplified tree structure. And around twenty percent flags as Disrupted or Highly disrupted. Again, treat this as an early research map: it is best used to focus where field teams should drive next, not as a finished regulatory scorecard.</aside>
+    </section>
+    
+
+    <section class="slide layout-standard" data-index="18" data-id="16" data-section="main" data-act="Close" data-time="21:45–22:45" data-title="Next: field tests across Northern Australia">
+      
+        <header class="s-head">
+          <div class="s-title-wrap">
+            
+            <h2 class="s-title">Next: field tests across Northern Australia</h2>
+            
+          </div>
+        </header>
+        
+      <div class="s-body">
+        <div class="split-wide-left">
+          <div class="fig-box">
+            <img src="assets/map_northern_aus_frontier.png" alt="Four-panel baseline map across Northern Australia from Broome and Darwin to Cairns and Townsville" data-zoom="Northern Australia baseline ready for upcoming savanna surveys">
+          </div>
+          <div class="side-col">
+            <div class="panel">
+              <div class="panel-hd sky">Baseline ready to test</div>
+              <p class="side-p">Spanning the Kimberley, Top End, Gulf, and Cape York — generated by the same shared condition model before new field data arrive.</p>
+            </div>
+            <div class="panel">
+              <div class="panel-hd emerald">Two questions for upcoming savanna surveys</div>
+              <div class="q-list">
+                <div class="q-item"><strong>1. Generalisation:</strong> Do our continental condition maps hold up under monsoonal wet–dry cycles and northern fire regimes?</div>
+                <div class="q-item"><strong>2. Process transfer:</strong> Can the early process view separate intact tropical woodlands from woody thickening and eroded scalds?</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="s-num">16</div>
+      <aside class="notes">So where does this go next? Right now we have a clean continental baseline across Northern Australia — from Broome and the Kimberley across Darwin, Katherine, and the Gulf to Cairns and Townsville. Because most of our grazing validation so far has been in southern and central Queensland, Northern Australia is the true out-of-domain test. Over the coming dry seasons, upcoming savanna field surveys will put this baseline to the test on two concrete questions: first, whether our six condition maps stay accurate across monsoonal wet-dry seasons and frequent savanna fires; and second, whether the early verb-based process view transfers cleanly to tropical woodlands and northern grazing lands.</aside>
+    </section>
+    
+
+    <section class="slide layout-standard" data-index="19" data-id="17" data-section="main" data-act="Close" data-time="22:45–24:00" data-title="From static ledgers to living processes — what this unlocks">
+      
+        <header class="s-head">
+          <div class="s-title-wrap">
+            <div class="s-kicker">APAC AI for Science DevFest · Summary &amp; Q&amp;A</div>
+            <h2 class="s-title">From static ledgers to living processes — what this unlocks</h2>
+            
+          </div>
+        </header>
+        
+      <div class="s-body">
+        <div class="takeaways-grid">
+          <div class="tk-card sky">
+            <div class="tk-top">
+              <span class="tk-num">01</span>
+              <span class="tk-tag">AlphaEarth Foundations</span>
+            </div>
+            <h3>Global embeddings transform Earth science</h3>
+            <p>64-D annual satellite fingerprints replace years of bespoke remote-sensing pipelines. One shared <strong>~3 MB</strong> multi-task model maps <strong>1.2 billion pixels</strong> across Australia in <strong>~40 min on 1 GPU</strong> — halving canopy error and cutting false native alarms from <strong>76% → 9%</strong>.</p>
+          </div>
+          <div class="tk-card emerald">
+            <div class="tk-top">
+              <span class="tk-num">02</span>
+              <span class="tk-tag">Gemini VLM · LandLens</span>
+            </div>
+            <h3>Frontier VLMs turn field photos into structured science</h3>
+            <p>Given rainfall history and explicit agronomy rules, <strong>Gemini VLMs</strong> emit auditable <strong>Evidence → Reasoning → Conclusion</strong> JSON — adding <strong>~5,900</strong> grazing ratings (solving rare Grade D imbalance) and driving our verb-based landscape readings.</p>
+          </div>
+          <div class="tk-card violet">
+            <div class="tk-top">
+              <span class="tk-num">03</span>
+              <span class="tk-tag">Operational DeepEnvironmentalTech</span>
+            </div>
+            <h3>Domain discipline makes continental AI trustworthy</h3>
+            <p>Separating ecological intactness from grazing pasture, enforcing fair unweighted optimisation, and filtering roadside bias turn prototypes into trusted layers for <strong>UN SEEA-EA</strong>, <strong>Accounting for Nature</strong>, and sustainable pastoral management.</p>
+          </div>
+          <div class="tk-card amber">
+            <div class="tk-top">
+              <span class="tk-num">04</span>
+              <span class="tk-tag">Interdisciplinary Frontier</span>
+            </div>
+            <h3>A living-process view reveals what checklists miss</h3>
+            <p>Pairing spatial AI with cognitive linguistics shows roughly <strong>1 in 3</strong> Grade A pasture sites hiding missing tree structure — shifting monitoring from static accounting ledgers toward ongoing landscape cycles of disturbance, resting, and recovery.</p>
+          </div>
+        </div>
+        <div class="collab-band">
+          <div class="collab-lead">
+            <div class="collab-eyebrow">Built across academia &amp; industry — ready to travel across APAC</div>
+            <p>Global foundation embeddings and grounded Gemini VLM workflows remove borders between regions and disciplines — bringing researchers, developers, and engineers together on shared scientific platforms.</p>
+          </div>
+          <div class="collab-qa">
+            <span class="collab-qa-lbl">Ask me about:</span>
+            <div class="collab-chips">
+              <span class="collab-chip">Reusing AlphaEarth + multi-task trunks in your region</span>
+              <span class="collab-chip">Auditable Gemini VLM photo-to-JSON prompts</span>
+              <span class="collab-chip">Testing the process view in new ecosystems</span>
+            </div>
+          </div>
+        </div>
+        <div class="close-foot">
+          <div class="close-who">
+            <strong>Dr Peter Scarth</strong> · The University of Queensland · Cibo Labs · Ozius
+          </div>
+          <div class="close-actions">
+            <button class="chip-btn" onclick="openAppendix()">Explore Technical Appendix (A1–A11)</button>
+            <button class="chip-btn" onclick="toggleReaderMode()">Open Reader Mode</button>
+          </div>
+        </div>
+      </div>
+      <div class="s-num">17</div>
+      <aside class="notes">I will leave this slide up for questions, because it captures both what worked here and what this stack unlocks across the Asia-Pacific AI for Science community. First, Google DeepMind&#x27;s AlphaEarth Foundations genuinely changes the unit economics of Earth science: compact 64-number global satellite embeddings let a small academia-industry team build a three-megabyte multi-task model that maps 1.2 billion pixels across an entire continent in forty minutes on one GPU — cutting tree-cover error nearly in half and eliminating false native alarms on cleared land. Because those embeddings are global, this exact pattern travels across borders and biomes right across APAC. Second, frontier Gemini vision-language models solve one of field science&#x27;s oldest bottlenecks: when grounded with rainfall history and explicit domain rules, LandLens turns everyday paddock photos into auditable JSON, adding nearly six thousand grazing observations and driving our verb-based readings. Third, domain discipline is what turns research into operational infrastructure — respecting the boundary between intact ecosystems and grazing pasture, optimising fairly, and filtering roadside bias produce maps ready for national natural-capital accounts and sustainable grazing. And fourth, pairing spatial AI with cognitive linguistics moves us from static accounting ledgers toward living processes — revealing hidden structural loss beneath green grass. The hardest scientific challenges sit right at the intersection of disciplines and between academia and industry, and events like APAC AI for Science DevFest are where those collaborations spark. Thank you — I would love to take your questions, and we have eleven technical appendix slides ready if you want to dive under the hood.</aside>
+    </section>
+    
+
+    <section class="slide layout-standard" data-index="20" data-id="A1" data-section="appendix" data-act="Appendix" data-time="Backup" data-title="A1 · Full model architecture">
+      
+        <header class="s-head">
+          <div class="s-title-wrap">
+            
+            <h2 class="s-title">A1 · Full model architecture</h2>
+            
+          </div>
+        </header>
+        
+      <div class="s-body">
+        <div class="stack-visual">
+          <div class="fig-box main-fig">
+            <img src="assets/svg_architecture_detailed.svg" alt="Detailed architecture diagram showing 64-D satellite fingerprint, bioregion reference lookup, shared neural trunk, and six task heads" data-zoom="Detailed multi-task architecture">
+          </div>
+          <div class="strip-3">
+            <div class="mini-card"><strong class="sky">Shared trunk</strong><span>Residual neural blocks learn a joint landscape representation from satellite embeddings and local context.</span></div>
+            <div class="mini-card"><strong class="emerald">Robust loss</strong><span>Smooth outlier-tolerant regression prevents sharp vegetation boundary offsets from destabilising gradients.</span></div>
+            <div class="mini-card"><strong class="amber">Ensemble stability</strong><span>Ten-member ensemble exported as a single ~3 MB portable graph for fast inference.</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="s-num">A1</div>
+      <aside class="notes">Appendix A1 shows the full multi-task architecture behind the condition model. Each pixel combines its 64-number AlphaEarth vector with bioregion reference similarity features inside a shared residual trunk. Six specialised heads branch from the trunk: continuous regression heads with outlier-tolerant Huber loss for structure, intactness, climax similarity, native plant mix, and tree canopy cover, alongside an ordered cumulative probability head for grazing grades A through D.</aside>
+    </section>
+    
+
+    <section class="slide layout-standard" data-index="21" data-id="A2" data-section="appendix" data-act="Appendix" data-time="Backup" data-title="A2 · Comparing each pixel with the best sites in its own bioregion">
+      
+        <header class="s-head">
+          <div class="s-title-wrap">
+            
+            <h2 class="s-title">A2 · Comparing each pixel with the best sites in its own bioregion</h2>
+            
+          </div>
+        </header>
+        
+      <div class="s-body">
+        <div class="stack-visual">
+          <div class="fig-box main-fig">
+            <img src="assets/chart_appendix_bioregion_lut.png" alt="Two-panel chart showing signed-quadratic decoding of satellite fingerprints and exact zero gradient leakage from local grazing anomalies into ecological heads" data-zoom="Bioregion reference lookup and exact gradient isolation">
+          </div>
+          <div class="mini-card inline-note">
+            <strong class="emerald">Why this scales:</strong>
+            <span>Precomputing undisturbed reference centroids for every Australian bioregion gives instant GPU lookup at inference time, while keeping grazing anomalies mathematically isolated (zero sensitivity) from all five ecological heads.</span>
+          </div>
+        </div>
+      </div>
+      <div class="s-num">A2</div>
+      <aside class="notes">Appendix A2 covers two key engineering pieces. Left: how compact 8-bit stored satellite embeddings are decoded smoothly back onto the unit sphere without losing subtle spectral differences. Right: our mathematical proof of gradient isolation — perturbing local grazing anomaly features produces exactly 0.000 change across all five ecological heads and acts solely on the Grazing Condition head (sensitivity 21.7).</aside>
+    </section>
+    
+
+    <section class="slide layout-standard" data-index="22" data-id="A3" data-section="appendix" data-act="Appendix" data-time="Backup" data-title="A3 · Hyperparameter search: why we optimise a fair objective">
+      
+        <header class="s-head">
+          <div class="s-title-wrap">
+            
+            <h2 class="s-title">A3 · Hyperparameter search: why we optimise a fair objective</h2>
+            
+          </div>
+        </header>
+        
+      <div class="s-body">
+        <div class="stack-visual">
+          <div class="fig-box main-fig">
+            <img src="assets/chart_appendix_hpo.png" alt="Line chart of ten Bayesian hyperparameter search runs evaluated under 5-fold spatially blocked cross-validation with Run 6 achieving the lowest unweighted multi-task error of 3.23" data-zoom="10-run Bayesian hyperparameter search with unweighted objective">
+          </div>
+          <div class="mini-card inline-note">
+            <strong class="sky">Fair multi-task selection:</strong>
+            <span>Ten Bayesian search runs evaluated under 5-fold spatially blocked cross-validation using an unweighted multi-task error sum; Run 6 achieved the best overall balance (3.23) without starving difficult heads.</span>
+          </div>
+        </div>
+      </div>
+      <div class="s-num">A3</div>
+      <aside class="notes">Appendix A3 shows the ten-run Bayesian hyperparameter search used to tune learning rate, trunk width, regularisation, and task loss weights under five-fold spatially blocked cross-validation. Because the objective measures the unweighted sum of task errors, the optimiser can only improve by making every head genuinely more accurate. Run 6 reached the minimum unweighted error of 3.23 and was promoted to the final ensemble.</aside>
+    </section>
+    
+
+    <section class="slide layout-standard" data-index="23" data-id="A4" data-section="appendix" data-act="Appendix" data-time="Backup" data-title="A4 · Separating native plant mix from mature-forest similarity">
+      
+        <header class="s-head">
+          <div class="s-title-wrap">
+            
+            <h2 class="s-title">A4 · Separating native plant mix from mature-forest similarity</h2>
+            
+          </div>
+        </header>
+        
+      <div class="s-body">
+        <div class="stack-visual">
+          <div class="fig-box main-fig">
+            <img src="assets/map_appendix_remediation.png" alt="Four-panel before and after remediation maps showing corrected Native Plant Mix in south-eastern Australia and Climax Similarity across arid regions" data-zoom="Before and after remediation of Native Plant Mix and Climax Similarity">
+          </div>
+          <div class="mini-card inline-note">
+            <strong class="emerald">Targeted remediation:</strong>
+            <span>Adding explicit cleared-land negative controls and arid reference benchmarks eliminated false native readings on south-eastern cropland and restored realistic climax similarity across the interior.</span>
+          </div>
+        </div>
+      </div>
+      <div class="s-num">A4</div>
+      <aside class="notes">Appendix A4 compares an early prototype against the final model in two regions where early errors showed up clearly. Top row: in south-eastern Australia, adding explicit non-native negative controls cleaned up false native-plant scores across cleared cropping valleys. Bottom row: across arid Australia, expanding undisturbed bioregion reference coverage restored realistic climax similarity in deserts and shrublands.</aside>
+    </section>
+    
+
+    <section class="slide layout-standard" data-index="24" data-id="A5" data-section="appendix" data-act="Appendix" data-time="Backup" data-title="A5 · Photos taken from the road describe the road, not the paddock">
+      
+        <header class="s-head">
+          <div class="s-title-wrap">
+            
+            <h2 class="s-title">A5 · Photos taken from the road describe the road, not the paddock</h2>
+            
+          </div>
+        </header>
+        
+      <div class="s-body">
+        <div class="split-2">
+          <div class="fig-box">
+            <img src="assets/svg_road_buffer_sketch.svg" alt="Diagram showing raw roadside GPS landing on the road verge versus stepping perpendicular to the property boundary into the paddock" data-zoom="Stepping perpendicular to property boundaries clears road verges">
+          </div>
+          <div class="stack-visual">
+            <div class="fig-box main-fig">
+              <img src="assets/chart_road_buffer_penetration.png" alt="Bar chart showing inside-paddock placement rising from 36% for raw GPS to 53% when stepping 60 m perpendicular to the property boundary" data-zoom="118-photo roadside geometry audit">
+            </div>
+            <div class="mini-card">
+              <strong class="amber">Why roadside filtering matters at continental scale</strong>
+              <span>Roadside cameras see gravel shoulders and cleared roadside ditches. Stepping <strong>perpendicular into the property</strong> lifts in-paddock placement from <strong>36% → 53%</strong>, and our training filter excludes sites within 80 m of road centre lines.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="s-num">A5</div>
+      <aside class="notes">Appendix A5 shows the roadside sampling trap we solved when ingesting vehicle-collected paddock photos. Raw GPS points sit on bitumen, gravel shoulders, or bulldozed roadside ditches — which look like severely degraded bare ground from space. Even if you project forty metres along the camera compass bearing, almost half of roadside shots are angled obliquely down the corridor, so you still land inside the paddock only thirty-six percent of the time, with most points stuck in the road reserve. By projecting perpendicular to the actual property boundary on the camera side, inside-paddock placement jumps to fifty-three percent, and our production training pipeline enforces an eighty-metre road buffer.</aside>
+    </section>
+    
+
+    <section class="slide layout-standard" data-index="25" data-id="A6" data-section="appendix" data-act="Appendix" data-time="Backup" data-title="A6 · Camera direction vs. property-boundary geometry">
+      
+        <header class="s-head">
+          <div class="s-title-wrap">
+            
+            <h2 class="s-title">A6 · Camera direction vs. property-boundary geometry</h2>
+            
+          </div>
+        </header>
+        
+      <div class="s-body">
+        <div class="stack-visual">
+          <div class="fig-box main-fig">
+            <img src="assets/chart_appendix_compass_audit.png" alt="Two-panel audit of 118 roadside field photos comparing six projection strategies and showing how oblique camera angles reduce perpendicular penetration" data-zoom="118-photo roadside projection geometry audit">
+          </div>
+          <div class="mini-card inline-note">
+            <strong class="amber">Geometric takeaway:</strong>
+            <span>Forty-eight of 118 roadside photos were aimed at least 60° away from the road normal — explaining why stepping along the compass bearing leaves two-thirds of points inside the road corridor.</span>
+          </div>
+        </div>
+      </div>
+      <div class="s-num">A6</div>
+      <aside class="notes">Appendix A6 breaks down our 118-photo roadside geometry audit across six projection methods. Because photographers naturally aim down the fence line or diagonally across a paddock, forty-eight of the 118 shots were aimed sixty degrees or more away from perpendicular. By basic trigonometry, stepping along the compass line barely moves perpendicular to the road reserve, whereas stepping sixty metres perpendicular to the cadastral property boundary lifts inside-paddock placement to fifty-three percent.</aside>
+    </section>
+    
+
+    <section class="slide layout-standard" data-index="26" data-id="A7" data-section="appendix" data-act="Appendix" data-time="Backup" data-title="A7 · Making grade probabilities always add to 100 %">
+      
+        <header class="s-head">
+          <div class="s-title-wrap">
+            
+            <h2 class="s-title">A7 · Making grade probabilities always add to 100 %</h2>
+            
+          </div>
+        </header>
+        
+      <div class="s-body">
+        <div class="stack-visual">
+          <div class="fig-box main-fig">
+            <img src="assets/map_appendix_grade_probs.png" alt="Four-panel continental map of Grazing Condition Grade A, B, C, and D posterior probabilities summing cleanly to 100 percent" data-zoom="Continental ordered Grazing Grade A, B, C, and D probabilities">
+          </div>
+          <div class="mini-card inline-note">
+            <strong class="sky">Ordered cumulative probabilities:</strong>
+            <span>The grazing head predicts three ordered cutoffs (worse than A, worse than B, worse than C) enforced to never cross, guaranteeing non-negative class probabilities that always sum to 100% at every pixel.</span>
+          </div>
+        </div>
+      </div>
+      <div class="s-num">A7</div>
+      <aside class="notes">Appendix A7 shows the full continental probability distribution across Grazing Grades A, B, C, and D. Rather than treating grades as unordered categories or noisy independent thresholds, we enforce monotonically non-increasing cumulative cutoffs inside the model graph. Taking differences between consecutive cutoffs guarantees valid, non-negative probabilities summing cleanly to one hundred percent everywhere, while giving land managers a direct view of uncertainty.</aside>
+    </section>
+    
+
+    <section class="slide layout-standard" data-index="27" data-id="A8" data-section="appendix" data-act="Appendix" data-time="Backup" data-title="A8 · Why multi-task training gives a richer internal representation">
+      
+        <header class="s-head">
+          <div class="s-title-wrap">
+            
+            <h2 class="s-title">A8 · Why multi-task training gives a richer internal representation</h2>
+            
+          </div>
+        </header>
+        
+      <div class="s-body">
+        <div class="stack-visual">
+          <div class="fig-box main-fig">
+            <img src="assets/chart_appendix_svd_rank.png" alt="Two-panel chart showing a 5.8x expansion in effective rank of the shared trunk representation and stronger nonlinear probe accuracy for grazing condition" data-zoom="5.8x effective rank expansion in the shared trunk">
+          </div>
+          <div class="mini-card inline-note">
+            <strong class="emerald">Representation unfolding:</strong>
+            <span>Joint multi-task training expands the effective dimensionality of the internal trunk by <strong>5.8×</strong> compared with collapsing down to six scalar outputs — explaining why downstream probes on the trunk outperform probes on the six maps alone.</span>
+          </div>
+        </div>
+      </div>
+      <div class="s-num">A8</div>
+      <aside class="notes">Appendix A8 explains mathematically why the shared trunk is so useful for downstream research like our early process-view probes. Measuring effective rank via singular value decomposition across 423 held-out grazing sites shows a 5.8-fold expansion in usable dimensionality inside the shared trunk compared with the raw ecological output scores. On the right, a nonlinear probe on the shared trunk beats probing either raw satellite embeddings or ecological outputs alone.</aside>
+    </section>
+    
+
+    <section class="slide layout-standard" data-index="28" data-id="A9" data-section="appendix" data-act="Appendix" data-time="Backup" data-title="A9 · Production outputs and run times">
+      
+        <header class="s-head">
+          <div class="s-title-wrap">
+            
+            <h2 class="s-title">A9 · Production outputs and run times</h2>
+            
+          </div>
+        </header>
+        
+      <div class="s-body">
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr><th>Output layer</th><th>Scale / units</th><th>What it represents</th><th>Primary ground calibration</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>1 · Ecological Structure</strong></td><td>0 – 100</td><td>Canopy layers, logs, recruitment &amp; habitat structure</td><td>Field BioCondition transects</td></tr>
+              <tr><td><strong>2 · Ecosystem Intactness</strong></td><td>0 – 100</td><td>Continental integrity relative to minimal disturbance</td><td>National intactness reference</td></tr>
+              <tr><td><strong>3 · Climax Similarity</strong></td><td>0 – 100%</td><td>Match to undisturbed sites in the same bioregion</td><td>Bioregion reference strata</td></tr>
+              <tr><td><strong>4 · Native Plant Mix</strong></td><td>0 – 100%</td><td>Proportion of native vs. introduced plant cover</td><td>Botanical plots + cleared controls</td></tr>
+              <tr><td><strong>5 · Grazing Condition</strong></td><td>Grades A–D + 0–100</td><td>Pastoral productivity, perennial tussocks &amp; soil stability</td><td>Field transects + LandLens VLM</td></tr>
+              <tr><td><strong>6 · Tree Canopy Cover</strong></td><td>0 – 100%</td><td>Percentage of ground covered by woody tree crowns</td><td>~3,600 woody-cover field transects</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="strip-3">
+          <div class="mini-card"><strong class="sky">Continental grid</strong><span>80 m pixel spacing · 1.2 billion valid land pixels across mainland Australia and Tasmania.</span></div>
+          <div class="mini-card"><strong class="emerald">Inference speed</strong><span>~40 minutes end-to-end on a single cloud GPU (~2 million pixels per second throughput).</span></div>
+          <div class="mini-card"><strong class="amber">Portability</strong><span>Self-contained ~3 MB exported model graph with embedded bioregion lookup table.</span></div>
+        </div>
+      </div>
+      <div class="s-num">A9</div>
+      <aside class="notes">Appendix A9 summarises the operational characteristics of the continental run: six core outputs plus four ordered grazing-grade probability bands, computed at eighty-metre resolution across 1.2 billion valid pixels in roughly forty minutes on a single cloud GPU from a self-contained three-megabyte exported model.</aside>
+    </section>
+    
+
+    <section class="slide layout-standard" data-index="29" data-id="A10" data-section="appendix" data-act="Appendix" data-time="Backup" data-title="A10 · Glossary">
+      
+        <header class="s-head">
+          <div class="s-title-wrap">
+            
+            <h2 class="s-title">A10 · Glossary</h2>
+            
+          </div>
+        </header>
+        
+      <div class="s-body">
+        <div class="gloss-grid">
+          <div class="gloss-item"><strong>AlphaEarth Foundations</strong><span>An Earth-observation AI model that compresses a year of multi-sensor satellite data into a 64-number fingerprint for every 10 m pixel.</span></div>
+          <div class="gloss-item"><strong>Bioregion (IBRA)</strong><span>One of Australia&rsquo;s ecologically distinct geographic regions sharing characteristic climate, landforms, soils, and native ecosystems.</span></div>
+          <div class="gloss-item"><strong>BioCondition</strong><span>Queensland&rsquo;s field-based assessment framework scoring terrestrial vegetation structure and habitat attributes from 0 to 100.</span></div>
+          <div class="gloss-item"><strong>Checklist view of Country</strong><span>Noun-based monitoring that counts static components (trees, grass percent, bare soil) at a single point in time.</span></div>
+          <div class="gloss-item"><strong>Climax similarity</strong><span>How closely a pixel matches the least-disturbed native reference ecosystems inside its own bioregion.</span></div>
+          <div class="gloss-item"><strong>Ecosystem intactness (HCAS)</strong><span>Australia&rsquo;s national habitat condition score estimating how intact an ecosystem remains relative to minimal disturbance.</span></div>
+          <div class="gloss-item"><strong>Grazing grades (A–D)</strong><span>Pastoral land condition scale from Grade A (productive perennial pasture, stable soil) down to Grade D (severely degraded).</span></div>
+          <div class="gloss-item"><strong>LandLens (Gemini VLM)</strong><span>Our vision-language app combining paddock photos, climate context, and structured ecological prompts to emit auditable JSON ratings.</span></div>
+          <div class="gloss-item"><strong>Multi-task learning</strong><span>Training one shared neural network to predict several related outputs simultaneously so each task improves the shared representation.</span></div>
+          <div class="gloss-item"><strong>Process Stress (0–10)</strong><span>An early research index estimating how strongly physical landscape processes (water, soil, canopy, fire) are disrupted.</span></div>
+          <div class="gloss-item"><strong>Process view (Holding / Losing)</strong><span>Verb-based reading focusing on whether water, soil, and shade are held in place (holding verbs) or draining away (losing verbs).</span></div>
+          <div class="gloss-item"><strong>Spatial cross-validation</strong><span>Holding out entire distant geographic regions during testing so nearby pixels cannot leak local answers across train and test splits.</span></div>
+        </div>
+      </div>
+      <div class="s-num">A10</div>
+      <aside class="notes">Appendix A10 provides a quick plain-English glossary for all terms used in the talk and technical backup slides. In the main deck, hovering over dotted-underlined words also surfaces these definitions inline.</aside>
+    </section>
+    
+
+    <section class="slide layout-standard" data-index="30" data-id="A11" data-section="appendix" data-act="Appendix" data-time="Backup" data-title="A11 · Data sources &amp; references">
+      
+        <header class="s-head">
+          <div class="s-title-wrap">
+            
+            <h2 class="s-title">A11 · Data sources &amp; references</h2>
+            
+          </div>
+        </header>
+        
+      <div class="s-body">
+        <div class="split-2">
+          <div class="panel">
+            <div class="panel-hd sky">Earth observation &amp; national benchmarks</div>
+            <ul class="ref-list">
+              <li><strong>AlphaEarth Foundations</strong> — Google DeepMind annual global 10 m Earth-observation embedding fields (64-D unit-sphere representations).</li>
+              <li><strong>HCAS</strong> — Habitat Condition Assessment System, CSIRO &amp; Australian Government (DCCEEW).</li>
+              <li><strong>Owers et al.</strong> — National Ecosystem Condition Score baseline for Australia.</li>
+              <li><strong>IBRA Bioregions</strong> — Interim Biogeographic Regionalisation for Australia (subregional ecological strata).</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <div class="panel-hd emerald">Field datasets, LandLens &amp; evaluation media</div>
+            <ul class="ref-list">
+              <li><strong>Queensland BioCondition &amp; SLATS</strong> — Queensland Government field vegetation structure and woody canopy transects (~3,600 sites).</li>
+              <li><strong>LandLens (Gemini VLM)</strong> — Context-grounded structured photo reasoning (~5,900 grazing assessments + 136 two-step verb-centred process sites).</li>
+              <li><strong>Pastoral &amp; Botanical Field Networks</strong> — ~2,000 agronomist transects, TERN / AusPlots botanical surveys, and 83 held-out South-West Queensland validation sites.</li>
+              <li><strong>Full evaluation drive video:</strong> <span class="mono-url">youtube.com/watch?v=_tbDoJxXLsc</span> (Canopy Cover Evaluation Drive: Eulo to Cunnamulla).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="s-num">A11</div>
+      <aside class="notes">Appendix A11 lists the public Earth-observation benchmarks, state and national field survey networks, our LandLens Gemini VLM photo-reasoning pipeline, and the URL for the full Eulo to Cunnamulla canopy evaluation drive video. No external network calls are made by this presentation itself so it runs completely offline.</aside>
+    </section>
+    
+  </main>
+</div>
+
+<nav id="hud" aria-label="Presentation controls">
+  <button class="hud-btn" id="btn-prev" title="Previous slide (Left Arrow)">◀</button>
+  <span id="hud-counter">I-1 · 1 / 20</span>
+  <button class="hud-btn" id="btn-next" title="Next slide (Right Arrow)">▶</button>
+  <div class="hud-sep"></div>
+  <button class="hud-btn" id="btn-grid" title="Overview grid (G)">Grid</button>
+  <button class="hud-btn" id="btn-notes" title="Speaker notes (S)">Notes</button>
+  <button class="hud-btn" id="btn-reader" title="Reader Mode with full script (R)">Reader</button>
+  <button class="hud-btn" id="btn-appx" title="Toggle Technical Appendix (A)">Appendix</button>
+  <button class="hud-btn" id="btn-fs" title="Fullscreen (F)">Fullscreen</button>
+</nav>
+
+<aside id="notes-drawer" aria-label="Speaker notes">
+  <div class="nd-meta">
+    <span id="nd-label">Slide</span>
+    <span id="nd-time">0:00</span>
+  </div>
+  <div id="nd-text"></div>
+</aside>
+
+<div id="overview" aria-label="Slide overview">
+  <div class="ov-top">
+    <h2>Slide Overview</h2>
+    <button class="chip-btn" id="btn-ov-close">Close (Esc)</button>
+  </div>
+  <div>
+    <div class="ov-sec-title">Main Talk (Intro + 17 Core Slides)</div>
+    <div class="ov-grid" id="ov-main"></div>
+  </div>
+  <div>
+    <div class="ov-sec-title">Technical Appendix (A1–A11 · Outside Main Flow)</div>
+    <div class="ov-grid" id="ov-appx"></div>
+  </div>
+</div>
+
+<div id="lightbox" aria-label="Image zoom">
+  <img id="lightbox-img" src="" alt="">
+  <div id="lightbox-cap"></div>
+</div>
+
+<div id="tooltip" role="tooltip"></div>
+
+<div id="reader" aria-label="Reader Mode">
+  <div class="rd-bar">
+    <h1>From Static Ledgers to Living Processes — Reader Mode</h1>
+    <div style="display:flex; gap:10px;">
+      <button class="chip-btn" onclick="window.print()">Print / Save PDF</button>
+      <button class="chip-btn" onclick="toggleReaderMode()">Return to Slides (R)</button>
+    </div>
+  </div>
+  <div id="reader-list" style="display:flex; flex-direction:column; gap:30px;"></div>
+</div>
+
+<script>
+(() => {
+  const slides = Array.from(document.querySelectorAll('#deck > .slide'));
+  const mainIndices = slides.map((s, i) => s.dataset.section === 'main' ? i : -1).filter(i => i >= 0);
+  const appxIndices = slides.map((s, i) => s.dataset.section === 'appendix' ? i : -1).filter(i => i >= 0);
+
+  const deck = document.getElementById('deck');
+  const hud = document.getElementById('hud');
+  const counterEl = document.getElementById('hud-counter');
+  const notesDrawer = document.getElementById('notes-drawer');
+  const ndLabel = document.getElementById('nd-label');
+  const ndTime = document.getElementById('nd-time');
+  const ndText = document.getElementById('nd-text');
+  const overview = document.getElementById('overview');
+  const lightbox = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightbox-img');
+  const lbCap = document.getElementById('lightbox-cap');
+  const tooltip = document.getElementById('tooltip');
+  const driveVideo = document.getElementById('drive-video');
+  const driveWrap = document.getElementById('drive-video-wrap');
+  const driveBadge = document.getElementById('drive-video-badge');
+
+  let cur = 0;
+  let lastMain = 0;
+  let hudTimer = null;
+
+  function fitDeck() {
+    const scale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+    deck.style.transform = `scale(${scale})`;
+  }
+  window.addEventListener('resize', fitDeck);
+  fitDeck();
+
+  /* Auto-hide HUD after 2 s without mouse movement */
+  function wakeHud() {
+    hud.classList.remove('hidden');
+    clearTimeout(hudTimer);
+    hudTimer = setTimeout(() => {
+      if (!notesDrawer.classList.contains('open') && !overview.classList.contains('open')) {
+        hud.classList.add('hidden');
+      }
+    }, 2000);
+  }
+  window.addEventListener('mousemove', wakeHud);
+  window.addEventListener('mousedown', wakeHud);
+  wakeHud();
+
+  /* Slide 5 video play/pause lifecycle */
+  function syncVideoLifecycle(activeSlide) {
+    if (!driveVideo) return;
+    if (activeSlide.dataset.id === '5') {
+      const p = driveVideo.play();
+      if (p && p.catch) p.catch(() => {});
+      if (driveBadge) driveBadge.textContent = 'Playing · click to pause';
+    } else {
+      driveVideo.pause();
+    }
+  }
+  if (driveWrap && driveVideo) {
+    driveWrap.addEventListener('click', () => {
+      if (driveVideo.paused) {
+        driveVideo.play().catch(() => {});
+        driveBadge.textContent = 'Playing · click to pause';
+      } else {
+        driveVideo.pause();
+        driveBadge.textContent = 'Paused · click to resume';
+      }
+    });
+  }
+
+  function goTo(idx) {
+    idx = Math.max(0, Math.min(slides.length - 1, idx));
+    slides.forEach((s, i) => s.classList.toggle('active', i === idx));
+    cur = idx;
+    const s = slides[cur];
+    const sec = s.dataset.section;
+    if (sec === 'main') {
+      lastMain = cur;
+      const pos = mainIndices.indexOf(cur) + 1;
+      counterEl.textContent = `${s.dataset.id} · ${pos} / ${mainIndices.length}`;
+      document.getElementById('btn-appx').classList.remove('active');
+    } else {
+      const pos = appxIndices.indexOf(cur) + 1;
+      counterEl.textContent = `${s.dataset.id} · ${pos} / ${appxIndices.length}`;
+      document.getElementById('btn-appx').classList.add('active');
+    }
+    ndLabel.textContent = `${s.dataset.id} · ${s.dataset.act} — ${s.dataset.title}`;
+    ndTime.textContent = s.dataset.time;
+    ndText.textContent = (s.querySelector('aside.notes') || {}).textContent || '';
+    history.replaceState(null, '', '#' + s.dataset.id);
+    syncVideoLifecycle(s);
+    updateOverviewHighlight();
+  }
+
+  function stepSection(delta) {
+    const sec = slides[cur].dataset.section;
+    const list = sec === 'main' ? mainIndices : appxIndices;
+    const pos = list.indexOf(cur);
+    const nextPos = Math.max(0, Math.min(list.length - 1, pos + delta));
+    goTo(list[nextPos]);
+  }
+
+  window.openAppendix = () => goTo(appxIndices[0]);
+
+  /* Overview Grid */
+  function buildOverview() {
+    const ovMain = document.getElementById('ov-main');
+    const ovAppx = document.getElementById('ov-appx');
+    ovMain.innerHTML = '';
+    ovAppx.innerHTML = '';
+    slides.forEach((s, i) => {
+      const card = document.createElement('div');
+      card.className = 'ov-card';
+      card.dataset.idx = i;
+      card.innerHTML = `<div class="ov-card-meta"><span>${s.dataset.id} · ${s.dataset.act}</span><span>${s.dataset.time}</span></div>
+                        <div class="ov-card-title">${s.dataset.title}</div>`;
+      card.addEventListener('click', () => {
+        overview.classList.remove('open');
+        goTo(i);
+      });
+      (s.dataset.section === 'main' ? ovMain : ovAppx).appendChild(card);
+    });
+  }
+  function updateOverviewHighlight() {
+    document.querySelectorAll('.ov-card').forEach(c => c.classList.toggle('current', Number(c.dataset.idx) === cur));
+  }
+  buildOverview();
+
+  /* Lightbox */
+  window.openLightbox = (src, cap) => {
+    lbImg.src = src;
+    lbCap.textContent = cap || '';
+    lightbox.classList.add('open');
+  };
+  lightbox.addEventListener('click', () => lightbox.classList.remove('open'));
+  document.addEventListener('click', (e) => {
+    const img = e.target.closest('.fig-box img');
+    if (img && !document.body.classList.contains('reader-mode')) {
+      openLightbox(img.getAttribute('src'), img.dataset.zoom || img.getAttribute('alt') || '');
+    }
+  });
+
+  /* Glossary tooltips */
+  document.addEventListener('mouseover', (e) => {
+    const t = e.target.closest('.term');
+    if (!t) return;
+    tooltip.textContent = t.dataset.tip || '';
+    const r = t.getBoundingClientRect();
+    tooltip.style.left = Math.min(window.innerWidth - 380, Math.max(12, r.left)) + 'px';
+    tooltip.style.top = Math.max(12, r.top - 10) + 'px';
+    tooltip.style.transform = 'translateY(-100%)';
+    tooltip.classList.add('show');
+  });
+  document.addEventListener('mouseout', (e) => {
+    if (e.target.closest('.term')) tooltip.classList.remove('show');
+  });
+
+  /* Reader Mode */
+  let readerBuilt = false;
+  function scaleReaderSlides() {
+    document.querySelectorAll('.rd-stage-wrap').forEach(wrap => {
+      const inner = wrap.querySelector('.rd-stage-inner');
+      if (inner) inner.style.transform = `scale(${wrap.clientWidth / 1920})`;
+    });
+  }
+  window.toggleReaderMode = () => {
+    const entering = !document.body.classList.contains('reader-mode');
+    if (entering && !readerBuilt) {
+      const list = document.getElementById('reader-list');
+      let addedAppxBanner = false;
+      slides.forEach((s) => {
+        if (s.dataset.section === 'appendix' && !addedAppxBanner) {
+          addedAppxBanner = true;
+          const b = document.createElement('div');
+          b.className = 'rd-sec-banner';
+          b.textContent = 'Technical Appendix (A1–A11)';
+          list.appendChild(b);
+        }
+        const item = document.createElement('article');
+        item.className = 'rd-item';
+        const clone = s.cloneNode(true);
+        clone.classList.add('active');
+        // Replace video with static poster image inside Reader Mode for clean scrolling/printing
+        clone.querySelectorAll('video').forEach(v => {
+          const img = document.createElement('img');
+          img.src = v.getAttribute('poster') || 'assets/eulo_cunnamulla_drive_poster.jpg';
+          img.alt = 'Eulo to Cunnamulla evaluation drive frame';
+          img.style.cssText = 'width:100%;height:100%;object-fit:contain;';
+          v.replaceWith(img);
+        });
+        const noteText = (s.querySelector('aside.notes') || {}).textContent || '';
+        item.innerHTML = `
+          <div class="rd-head">
+            <strong>${s.dataset.id} · ${s.dataset.title}</strong>
+            <span>${s.dataset.act} · ${s.dataset.time}</span>
+          </div>
+          <div class="rd-stage-wrap"><div class="rd-stage-inner"></div></div>
+          <div class="rd-notes"><div class="rd-notes-lbl">Speaker Script</div>${noteText}</div>
+        `;
+        item.querySelector('.rd-stage-inner').appendChild(clone);
+        list.appendChild(item);
+      });
+      readerBuilt = true;
+    }
+    document.documentElement.classList.toggle('reader-mode', entering);
+    document.body.classList.toggle('reader-mode', entering);
+    if (entering) {
+      if (driveVideo) driveVideo.pause();
+      window.scrollTo(0, 0);
+      requestAnimationFrame(scaleReaderSlides);
+    } else {
+      window.scrollTo(0, 0);
+      fitDeck();
+      syncVideoLifecycle(slides[cur]);
+    }
+  };
+  window.addEventListener('resize', () => {
+    if (document.body.classList.contains('reader-mode')) scaleReaderSlides();
+  });
+
+  /* HUD buttons */
+  document.getElementById('btn-prev').addEventListener('click', () => stepSection(-1));
+  document.getElementById('btn-next').addEventListener('click', () => stepSection(1));
+  document.getElementById('btn-grid').addEventListener('click', () => overview.classList.toggle('open'));
+  document.getElementById('btn-ov-close').addEventListener('click', () => overview.classList.remove('open'));
+  document.getElementById('btn-notes').addEventListener('click', () => {
+    const open = notesDrawer.classList.toggle('open');
+    document.getElementById('btn-notes').classList.toggle('active', open);
+    if (open) wakeHud();
+  });
+  document.getElementById('btn-reader').addEventListener('click', () => toggleReaderMode());
+  document.getElementById('btn-appx').addEventListener('click', () => {
+    if (slides[cur].dataset.section === 'main') goTo(appxIndices[0]);
+    else goTo(lastMain);
+  });
+  document.getElementById('btn-fs').addEventListener('click', () => {
+    if (!document.fullscreenElement) document.documentElement.requestFullscreen().catch(() => {});
+    else document.exitFullscreen().catch(() => {});
+  });
+
+  /* Keyboard shortcuts */
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      if (lightbox.classList.contains('open')) { lightbox.classList.remove('open'); return; }
+      if (overview.classList.contains('open')) { overview.classList.remove('open'); return; }
+      if (notesDrawer.classList.contains('open')) {
+        notesDrawer.classList.remove('open');
+        document.getElementById('btn-notes').classList.remove('active');
+        return;
+      }
+      if (document.body.classList.contains('reader-mode')) { toggleReaderMode(); return; }
+      return;
+    }
+    if (lightbox.classList.contains('open')) return;
+    const k = e.key.toLowerCase();
+    if (k === 'r') { toggleReaderMode(); return; }
+    if (document.body.classList.contains('reader-mode')) return;
+    if (k === 'g' || k === 'o') { overview.classList.toggle('open'); return; }
+    if (overview.classList.contains('open')) return;
+    if (['ArrowRight', ' ', 'PageDown'].includes(e.key)) { e.preventDefault(); stepSection(1); }
+    else if (['ArrowLeft', 'PageUp'].includes(e.key)) { e.preventDefault(); stepSection(-1); }
+    else if (k === 's') { document.getElementById('btn-notes').click(); }
+    else if (k === 'a') { document.getElementById('btn-appx').click(); }
+    else if (k === 'f') { document.getElementById('btn-fs').click(); }
+    else if (slides[cur].dataset.id === '12' && ['1','2','3','4'].includes(e.key)) {
+      selectRegime(Number(e.key) - 1);
+    }
+  });
+
+  /* Slide 12 Interactive 4-Regime Inspector */
+  
+  const REGIMES = [
+    {
+      name: 'Intact processes',
+      color: 'emerald',
+      toneHex: '#22C55E',
+      pair: [
+        {
+          id: 'Site 95 · Windorah',
+          sub: 'Spinifex & red sand dune',
+          photo: 'assets/site_95.jpg',
+          stress: '1.6 / 10',
+          badge: 'Intact processes',
+          checklist: 'High native plant mix (94%), very low grazing score (Grade D)',
+          process: 'Coarse sand drinks rainfall deep underground while spinifex tussocks knit and shelter the dune.',
+          holding: ['root-knitting', 'percolating', 'co-sheltering', 'cradling'],
+          losing: ['wind-winnowing (crest)']
+        },
+        {
+          id: 'Site 85 · Carnarvon Gorge',
+          sub: 'Sandstone & basalt woodland',
+          photo: 'assets/site_85.jpg',
+          stress: '1.1 / 10',
+          badge: 'Intact processes',
+          checklist: 'High ecological structure (79), native plants (97%), canopy cover (83%)',
+          process: 'Both views agree: palm and eucalypt canopies arch-shade and cool the gorge floor even during dry spells.',
+          holding: ['arch-shading', 'canopy-filtering', 'co-sheltering', 'tempering'],
+          losing: ['mild dry-flank parching']
+        }
+      ]
+    },
+    {
+      name: 'Masked (looks good, losing structure)',
+      color: 'amber',
+      toneHex: '#F59E0B',
+      pair: [
+        {
+          id: 'Site 08 · Morven',
+          sub: 'Cleared red-earth mulga & buffel grass',
+          photo: 'assets/site_08.jpg',
+          stress: '3.9 / 10',
+          badge: 'Masked · Grade A pasture',
+          checklist: 'Top pasture grade (Grade A) after rain; low climax similarity (12%)',
+          process: 'Dense buffel grass holds the topsoil, but cleared shade trees leave the upper air exposed and baking.',
+          holding: ['root-knitting', 'percolating', 'cradling'],
+          losing: ['tree removal', 'baking', 'parching']
+        },
+        {
+          id: 'Site 61 · Mulga & Box Slope',
+          sub: 'Open red-earth grazing paddock',
+          photo: 'assets/site_61.jpg',
+          stress: '4.0 / 10',
+          badge: 'Masked · Surface vs structure',
+          checklist: 'Solid ground cover and grazing score; simplified woody canopy',
+          process: 'Thick pasture slows runoff on the ground while tree cover stays sparse — showing why surface and tree structure must be separated.',
+          holding: ['root-knitting', 'percolating', 'cradling'],
+          losing: ['hard-setting (seams)', 'wind-winnowing', 'crusting']
+        }
+      ]
+    },
+    {
+      name: 'Disrupted',
+      color: 'violet',
+      toneHex: '#A855F7',
+      pair: [
+        {
+          id: 'Site 51 · Nebine',
+          sub: 'Mulga & box woodland with bare inter-grove pans',
+          photo: 'assets/site_51.jpg',
+          stress: '6.4 / 10',
+          badge: 'Disrupted',
+          checklist: 'Surviving tree canopy boosts ecological score (54); grazing drops to C/D',
+          process: 'Remnant trees look good from above, but glazed red clay pans between groves shed muddy rain instead of soaking it in.',
+          holding: ['arch-shading (groves)', 'anchoring', 'baffling'],
+          losing: ['hard-setting', 'crusting', 'sheet-stripping']
+        },
+        {
+          id: 'Site 70 · St George / Maranoa',
+          sub: 'Mechanically pulled mulga regrowth',
+          photo: 'assets/site_70.jpg',
+          stress: '6.8 / 10',
+          badge: 'Disrupted',
+          checklist: 'Low intactness (22) and grazing grade D; emerging grass cover',
+          process: 'Felled trunks remove tree shade and raise wildfire risk, yet fallen logs and colonising grasses still hold half the surface soil.',
+          holding: ['root-knitting', 'sheltering', 'percolating'],
+          losing: ['canopy loss', 'hard-setting', 'winnowing']
+        }
+      ]
+    },
+    {
+      name: 'Highly disrupted',
+      color: 'rose',
+      toneHex: '#EF4444',
+      pair: [
+        {
+          id: 'Site 54 · Bollon',
+          sub: 'Hard-set scalded red-earth pan',
+          photo: 'assets/site_54.jpg',
+          stress: '8.1 / 10',
+          badge: 'Highly disrupted',
+          checklist: 'Very low structure (9), intactness (13), and grazing (Grade D)',
+          process: 'Glazed clay-loam pans shed rainfall across the surface, yet fallen branches and pioneer subshrubs act as tiny soil-catching sinks.',
+          holding: ['cradling (fallen branch)', 'baffling (subshrubs)'],
+          losing: ['pan-smearing', 'crusting', 'hard-setting', 'sheet-stripping']
+        },
+        {
+          id: 'Site 132 · Lower Mount Walker',
+          sub: 'Ploughed subcoastal valley',
+          photo: 'assets/site_132.jpg',
+          stress: '8.8 / 10',
+          badge: 'Highly disrupted',
+          checklist: 'Near-zero canopy (1%) and native plants (0%); green grass verge masks paddock',
+          process: 'Bare tilled soil smears and bakes across the paddock while a narrow green roadside strip hides it from the road.',
+          holding: ['roadside strip only'],
+          losing: ['clearing', 'clod-slaking', 'pan-smearing', 'baking']
+        }
+      ]
+    }
+  ];
+
+
+  const regimeStage = document.getElementById('regime-stage');
+  const regimeBtns = Array.from(document.querySelectorAll('#regime-tabs .tab-btn'));
+
+  window.selectRegime = (idx) => {
+    regimeBtns.forEach((b, i) => b.classList.toggle('active', i === idx));
+    const R = REGIMES[idx];
+    regimeStage.innerHTML = R.pair.map(site => `
+      <div class="reg-card">
+        <div class="reg-top">
+          <div>
+            <div class="reg-id" style="color:${R.toneHex};">${site.id} · Process Stress ${site.stress}</div>
+            <div class="reg-sub">${site.sub}</div>
+          </div>
+          <span class="reg-pill" style="color:${R.toneHex};">${site.badge}</span>
+        </div>
+        <div class="fig-box reg-photo">
+          <img src="${site.photo}" alt="${site.id}" class="cover" data-zoom="${site.id} — ${site.sub} (Process Stress ${site.stress})">
+        </div>
+        <div class="reg-compare">
+          <div><strong class="sky">Checklist view:</strong> ${site.checklist}</div>
+          <div><strong style="color:${R.toneHex};">Process view:</strong> ${site.process}</div>
+        </div>
+        <div class="reg-verbs">
+          ${site.holding.map(v => `<span class="v-chip v-hold">Holding: ${v}</span>`).join('')}
+          ${site.losing.map(v => `<span class="v-chip v-lose">Losing: ${v}</span>`).join('')}
+        </div>
+      </div>
+    `).join('');
+  };
+  regimeBtns.forEach(btn => btn.addEventListener('click', () => selectRegime(Number(btn.dataset.idx))));
+  selectRegime(0);
+
+  /* Hash routing */
+  function syncFromHash() {
+    const h = (location.hash || '').replace('#', '').trim();
+    const byId = slides.findIndex(s => s.dataset.id.toLowerCase() === h.toLowerCase());
+    if (byId >= 0) { goTo(byId); return; }
+    const n = parseInt(h, 10);
+    if (!isNaN(n) && n >= 1 && n <= slides.length) goTo(n - 1);
+    else goTo(0);
+  }
+  window.addEventListener('hashchange', syncFromHash);
+  syncFromHash();
+})();
+</script>
+</body>
+</html>

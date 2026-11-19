@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 620" width="1440" height="620" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+  <defs>
+    <marker id="aSky" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#38BDF8"/>
+    </marker>
+    <marker id="aEm" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#10B981"/>
+    </marker>
+    <marker id="aAmb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#F59E0B"/>
+    </marker>
+    <marker id="aPur" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#A855F7"/>
+    </marker>
+    <linearGradient id="fwBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#351F0B"/>
+      <stop offset="100%" stop-color="#221307"/>
+    </linearGradient>
+    <linearGradient id="fwLine" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#F59E0B" stop-opacity="0.95"/>
+      <stop offset="65%" stop-color="#FBBF24" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#F59E0B" stop-opacity="0.35"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1440" height="620" rx="18" fill="#0D131F" stroke="#1E293B" stroke-width="1.6"/>
+
+  <text x="720" y="44" text-anchor="middle" fill="#F8FAFC" font-size="25" font-weight="800">
+    One Shared Neural Trunk, Six Consistent Maps
+  </text>
+
+  <!-- COLUMN HEADERS -->
+  <text x="193" y="84" text-anchor="middle" fill="#38BDF8" font-size="16" font-weight="800" letter-spacing="1.2">1. INPUTS PER PIXEL</text>
+  <text x="628" y="84" text-anchor="middle" fill="#10B981" font-size="16" font-weight="800" letter-spacing="1.2">2. SHARED NEURAL TRUNK</text>
+  <text x="1177" y="84" text-anchor="middle" fill="#F8FAFC" font-size="16" font-weight="800" letter-spacing="1.2">3. SIX OPERATIONAL MAPS</text>
+
+  <!-- COL 1: INPUTS -->
+  <rect x="40" y="110" width="306" height="170" rx="14" fill="#111C2D" stroke="#38BDF8" stroke-width="2.4"/>
+  <text x="193" y="152" text-anchor="middle" fill="#F8FAFC" font-size="21" font-weight="800">Satellite Fingerprint</text>
+  <text x="193" y="184" text-anchor="middle" fill="#7DD3FC" font-size="16" font-weight="700">64 AlphaEarth numbers</text>
+  <text x="193" y="216" text-anchor="middle" fill="#CBD5E1" font-size="15">Optical · Radar · 3D LiDAR</text>
+  <text x="193" y="240" text-anchor="middle" fill="#CBD5E1" font-size="15">Climate &amp; seasonal change</text>
+
+  <rect x="40" y="324" width="306" height="170" rx="14" fill="#1A152B" stroke="#A855F7" stroke-width="2.4"/>
+  <text x="193" y="366" text-anchor="middle" fill="#F8FAFC" font-size="21" font-weight="800">Local Benchmark</text>
+  <text x="193" y="398" text-anchor="middle" fill="#D8B4FE" font-size="16" font-weight="700">85 Australian bioregions</text>
+  <text x="193" y="430" text-anchor="middle" fill="#CBD5E1" font-size="15">Compares each pixel to the</text>
+  <text x="193" y="454" text-anchor="middle" fill="#CBD5E1" font-size="15">best sites in its own region</text>
+
+  <!-- COL 2: SHARED TRUNK -->
+  <rect x="436" y="114" width="384" height="246" rx="16" fill="#0E241E" stroke="#10B981" stroke-width="3"/>
+  <text x="628" y="162" text-anchor="middle" fill="#F8FAFC" font-size="24" font-weight="800">Shared Feature Trunk</text>
+  <text x="628" y="196" text-anchor="middle" fill="#34D399" font-size="16.5" font-weight="700">Learns landscape physics once</text>
+  <text x="628" y="236" text-anchor="middle" fill="#CBD5E1" font-size="16">• Sees trees, soil, moisture &amp; cover</text>
+  <text x="628" y="266" text-anchor="middle" fill="#CBD5E1" font-size="16">• Shares strength across rare field data</text>
+  <text x="628" y="296" text-anchor="middle" fill="#CBD5E1" font-size="16">• Expands signal richness nearly 6×</text>
+  <text x="628" y="334" text-anchor="middle" fill="#94A3B8" font-size="14.5">(Full technical details in Appendix A1)</text>
+
+  <!-- HIGHLIGHTED GRAZING FIREWALL ZONE -->
+  <!-- Subtle warm amber outer halo -->
+  <rect x="432" y="418" width="392" height="172" rx="18" fill="none" stroke="#F59E0B" stroke-width="8" stroke-opacity="0.16"/>
+  <rect x="436" y="422" width="384" height="164" rx="14" fill="url(#fwBg)" stroke="#F59E0B" stroke-width="3" stroke-dasharray="8 5"/>
+
+  <!-- Shield icon + header -->
+  <g transform="translate(462, 441)">
+    <path d="M 11 0 L 22 4 L 22 12 C 22 18.5 17.2 23.2 11 25.5 C 4.8 23.2 0 18.5 0 12 L 0 4 Z"
+          fill="#F59E0B" fill-opacity="0.24" stroke="#FBBF24" stroke-width="2.2" stroke-linejoin="round"/>
+    <path d="M 7 12.5 L 10 15.5 L 15.5 9.5" fill="none" stroke="#FDE68A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text x="646" y="460" text-anchor="middle" fill="#FBBF24" font-size="18.2" font-weight="900" letter-spacing="0.4">STRICT GRAZING FIREWALL</text>
+  <text x="628" y="492" text-anchor="middle" fill="#F8FAFC" font-size="15.2">Shared trunk features flow <tspan fill="#6EE7B7" font-weight="800">one-way</tspan> to grazing</text>
+  <text x="628" y="518" text-anchor="middle" fill="#F8FAFC" font-size="15.2">Ecological climax labels <tspan fill="#FCA5A5" font-weight="800">never</tspan> train grazing</text>
+  <text x="628" y="544" text-anchor="middle" fill="#FDE68A" font-size="15.2" font-weight="700">Stops deserts from scoring as top pasture</text>
+  <text x="628" y="569" text-anchor="middle" fill="#FBBF24" font-size="13.2" font-weight="700" opacity="0.9">Zero gradient leakage back into ecological heads</text>
+
+  <!-- HORIZONTAL FIREWALL BARRIER ACROSS OUTPUT CHANNEL -->
+  <line x1="822" y1="494" x2="1396" y2="494" stroke="#F59E0B" stroke-width="9" stroke-opacity="0.20"/>
+  <line x1="822" y1="494" x2="1396" y2="494" stroke="#FBBF24" stroke-width="2.8" stroke-dasharray="10 6"/>
+
+  <!-- COL 3: 6 MAPS -->
+  <rect x="956" y="106" width="440" height="64" rx="11" fill="#111C2D" stroke="#38BDF8" stroke-width="2"/>
+  <text x="980" y="136" fill="#38BDF8" font-size="18.5" font-weight="800">Ecological Structure</text>
+  <text x="980" y="158" fill="#CBD5E1" font-size="14.5">How intact is the native vegetation layout?</text>
+
+  <rect x="956" y="182" width="440" height="64" rx="11" fill="#0F2621" stroke="#10B981" stroke-width="2"/>
+  <text x="980" y="212" fill="#34D399" font-size="18.5" font-weight="800">Ecosystem Intactness</text>
+  <text x="980" y="234" fill="#CBD5E1" font-size="14.5">How close to undisturbed natural habitat?</text>
+
+  <rect x="956" y="258" width="440" height="64" rx="11" fill="#1C152B" stroke="#A855F7" stroke-width="2"/>
+  <text x="980" y="288" fill="#C084FC" font-size="18.5" font-weight="800">Climax Similarity</text>
+  <text x="980" y="310" fill="#CBD5E1" font-size="14.5">Match to undisturbed sites in the same bioregion</text>
+
+  <rect x="956" y="334" width="440" height="64" rx="11" fill="#0F2625" stroke="#2DD4BF" stroke-width="2"/>
+  <text x="980" y="364" fill="#2DD4BF" font-size="18.5" font-weight="800">Native Plant Mix</text>
+  <text x="980" y="386" fill="#CBD5E1" font-size="14.5">Share of native vs. introduced ground species</text>
+
+  <rect x="956" y="410" width="440" height="64" rx="11" fill="#10212F" stroke="#60A5FA" stroke-width="2"/>
+  <text x="980" y="440" fill="#60A5FA" font-size="18.5" font-weight="800">Tree Canopy Cover</text>
+  <text x="980" y="462" fill="#CBD5E1" font-size="14.5">Woody overstorey cover anchored to ground surveys</text>
+
+  <rect x="956" y="514" width="440" height="74" rx="11" fill="#2A190C" stroke="#F59E0B" stroke-width="2.8"/>
+  <text x="980" y="546" fill="#FBBF24" font-size="18.5" font-weight="800">Grazing Condition (Grades A – D)</text>
+  <text x="980" y="570" fill="#FDE68A" font-size="14.5">Trained strictly on field pasture ratings + probabilities</text>
+
+  <!-- INPUT -> TRUNK / FIREWALL ARROWS -->
+  <path d="M 346 196 L 428 196" stroke="#38BDF8" stroke-width="3" fill="none" marker-end="url(#aSky)"/>
+  <path d="M 346 392 C 392 392, 392 266, 428 266" stroke="#A855F7" stroke-width="2.8" fill="none" marker-end="url(#aPur)"/>
+  <path d="M 346 448 C 392 448, 392 504, 428 504" stroke="#F59E0B" stroke-width="2.8" stroke-dasharray="6 4" fill="none" marker-end="url(#aAmb)"/>
+
+  <!-- TRUNK -> 5 ECOLOGICAL MAPS -->
+  <path d="M 820 172 C 892 172, 892 138, 948 138" stroke="#10B981" stroke-width="2.4" fill="none" marker-end="url(#aEm)"/>
+  <path d="M 820 204 C 892 204, 892 214, 948 214" stroke="#10B981" stroke-width="2.4" fill="none" marker-end="url(#aEm)"/>
+  <path d="M 820 238 C 892 238, 892 290, 948 290" stroke="#10B981" stroke-width="2.4" fill="none" marker-end="url(#aEm)"/>
+  <path d="M 820 272 C 894 272, 894 366, 948 366" stroke="#10B981" stroke-width="2.4" stroke-dasharray="5 3" fill="none" marker-end="url(#aEm)"/>
+  <path d="M 820 306 C 896 306, 896 442, 948 442" stroke="#10B981" stroke-width="2.4" stroke-dasharray="5 3" fill="none" marker-end="url(#aEm)"/>
+
+  <!-- TRUNK -> GRAZING CONDITION (ONE-WAY SHARED FEATURES CROSSING THE FIREWALL) -->
+  <path d="M 820 338 C 856 338, 856 534, 948 534" stroke="#10B981" stroke-width="2.8" stroke-dasharray="6 4" fill="none" marker-end="url(#aEm)"/>
+
+  <!-- FIREWALL GATE BADGE ON THE BARRIER LINE -->
+  <rect x="832" y="481" width="112" height="26" rx="13" fill="#2A1708" stroke="#F59E0B" stroke-width="1.8"/>
+  <text x="888" y="498.5" text-anchor="middle" fill="#FDE68A" font-size="11.5" font-weight="800" letter-spacing="0.4">ONE-WAY GATE</text>
+
+  <!-- FIREWALL -> GRAZING CONDITION (LOCAL ANOMALY) -->
+  <path d="M 820 564 L 948 564" stroke="#F59E0B" stroke-width="3.2" fill="none" marker-end="url(#aAmb)"/>
+</svg>

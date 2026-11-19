@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 460" width="1100" height="460" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+  <defs>
+    <marker id="arrRed" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#EF4444"/>
+    </marker>
+    <marker id="arrAmb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#F59E0B"/>
+    </marker>
+    <marker id="arrGrn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#10B981"/>
+    </marker>
+  </defs>
+
+  <rect width="1100" height="460" rx="16" fill="#0D131F" stroke="#1E293B" stroke-width="1.6"/>
+  <text x="550" y="38" text-anchor="middle" fill="#F8FAFC" font-size="21" font-weight="800">
+    Why Roadside Photos Describe the Road Unless You Step Past the Fence
+  </text>
+
+  <!-- TOP-DOWN LANDSCAPE STRIPS -->
+  <!-- Paddock interior (top) -->
+  <rect x="44" y="64" width="1012" height="172" rx="10" fill="#0E241E" stroke="#10B981" stroke-width="1.5"/>
+  <text x="68" y="96" fill="#34D399" font-size="17" font-weight="800">AUTHENTIC PADDOCK INTERIOR (Target ≥ 80 m from road centreline)</text>
+
+  <!-- Cleared road reserve / ditch -->
+  <rect x="44" y="238" width="1012" height="96" fill="#2A1C12" stroke="#92400E" stroke-width="1.2"/>
+  <text x="64" y="280" fill="#FBBF24" font-size="16" font-weight="700">Roadside Ditch &amp; Verge</text>
+  <text x="64" y="303" fill="#FDE68A" font-size="13.5" opacity="0.88">bare soil, gravel &amp; roadside weeds</text>
+
+  <!-- Property fence line (drawn on top of verge rect) -->
+  <line x1="44" y1="236" x2="1056" y2="236" stroke="#38BDF8" stroke-width="3" stroke-dasharray="10 6"/>
+  <rect x="786" y="218" width="250" height="32" rx="6" fill="#0B0F17" stroke="#38BDF8" stroke-width="1.4"/>
+  <text x="911" y="239" text-anchor="middle" fill="#7DD3FC" font-size="13.5" font-weight="800">PROPERTY FENCE BOUNDARY</text>
+
+  <!-- Bitumen road -->
+  <rect x="44" y="334" width="1012" height="66" rx="6" fill="#1E293B" stroke="#475569" stroke-width="1.4"/>
+  <line x1="60" y1="367" x2="1040" y2="367" stroke="#FACC15" stroke-width="2.5" stroke-dasharray="18 14" opacity="0.8"/>
+  <text x="68" y="388" fill="#CBD5E1" font-size="14.5" font-weight="700">ROAD CENTRELINE</text>
+
+  <!-- Vehicle / Photographer GPS point -->
+  <circle cx="380" cy="367" r="11" fill="#EF4444" stroke="#F8FAFC" stroke-width="2.4"/>
+  <rect x="260" y="408" width="240" height="36" rx="8" fill="#2A1216" stroke="#EF4444" stroke-width="1.4"/>
+  <text x="380" y="431" text-anchor="middle" fill="#FCA5A5" font-size="14" font-weight="800">1. Raw GPS: Stuck on road</text>
+
+  <!-- Oblique camera compass shot -->
+  <line x1="380" y1="358" x2="625" y2="270" stroke="#F59E0B" stroke-width="3.6" stroke-dasharray="7 5" marker-end="url(#arrAmb)"/>
+  <circle cx="634" cy="267" r="9" fill="#F59E0B" stroke="#F8FAFC" stroke-width="2"/>
+  <rect x="572" y="282" width="330" height="44" rx="8" fill="#23190B" stroke="#F59E0B" stroke-width="1.5"/>
+  <text x="737" y="309" text-anchor="middle" fill="#FDE68A" font-size="14" font-weight="800">2. Angled compass shot: Still in verge!</text>
+
+  <!-- Perpendicular property step -->
+  <line x1="380" y1="355" x2="380" y2="152" stroke="#10B981" stroke-width="4.2" marker-end="url(#arrGrn)"/>
+  <circle cx="380" cy="142" r="10.5" fill="#10B981" stroke="#F8FAFC" stroke-width="2.4"/>
+  <rect x="404" y="114" width="445" height="68" rx="10" fill="#0B1F19" stroke="#10B981" stroke-width="2"/>
+  <text x="424" y="143" fill="#6EE7B7" font-size="16" font-weight="800">3. Compass picks side → step perpendicular</text>
+  <text x="424" y="168" fill="#F8FAFC" font-size="14.5">Clears verge cleanly into the paddock (36% → 53%)</text>
+
+  <!-- Right-angle symbol -->
+  <polyline points="380,218 398,218 398,236" fill="none" stroke="#10B981" stroke-width="2.4"/>
+</svg>
