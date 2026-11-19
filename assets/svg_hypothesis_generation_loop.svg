@@ -20,82 +20,73 @@
 
   <rect width="1560" height="590" rx="18" fill="#0D131F" stroke="#1E293B" stroke-width="1.6"/>
 
-  <text x="780" y="42" text-anchor="middle" fill="#F8FAFC" font-size="24" font-weight="800">
-    Google Hypothesis Generation: Framing the Verb-Based Experiment
-  </text>
-  <text x="780" y="68" text-anchor="middle" fill="#94A3B8" font-size="14.5">
-    labs.google.com/science/hypothesis-generation/ · Stress-testing ideas against 1,985 papers before writing code
-  </text>
+  <text x="780" y="42" text-anchor="middle" fill="#F8FAFC" font-size="25" font-weight="800">Google Hypothesis Generation: Stress-Testing the Hunch</text>
+  <text x="780" y="70" text-anchor="middle" fill="#94A3B8" font-size="16">labs.google.com/science/hypothesis-generation/ · 1,985 papers read before building the experiment</text>
 
   <!-- COLUMN HEADERS -->
-  <text x="198" y="101" text-anchor="middle" fill="#38BDF8" font-size="14.5" font-weight="800" letter-spacing="1.1">1. QUESTION &amp; CORPUS</text>
-  <text x="646" y="101" text-anchor="middle" fill="#10B981" font-size="14.5" font-weight="800" letter-spacing="1.1">2. HYPOTHESIS ENGINE</text>
-  <text x="1227" y="101" text-anchor="middle" fill="#F8FAFC" font-size="14.5" font-weight="800" letter-spacing="1.1">3. THREE TRAPS CAUGHT BEFORE CODING</text>
+  <text x="198" y="104" text-anchor="middle" fill="#38BDF8" font-size="15.5" font-weight="800" letter-spacing="1.1">1. QUESTION &amp; CORPUS</text>
+  <text x="646" y="104" text-anchor="middle" fill="#10B981" font-size="15.5" font-weight="800" letter-spacing="1.1">2. HYPOTHESIS ENGINE</text>
+  <text x="1227" y="104" text-anchor="middle" fill="#F8FAFC" font-size="15.5" font-weight="800" letter-spacing="1.1">3. TWO TRAPS + ONE DESIGN PRINCIPLE</text>
 
   <!-- COL 1: INPUTS -->
-  <rect x="28" y="120" width="340" height="198" rx="14" fill="#111C2D" stroke="#38BDF8" stroke-width="2.4"/>
-  <text x="198" y="158" text-anchor="middle" fill="#F8FAFC" font-size="19.5" font-weight="800">Core Scientific Gap</text>
-  <text x="198" y="186" text-anchor="middle" fill="#7DD3FC" font-size="14.5" font-weight="700">Static checklists vs. living processes</text>
-  <text x="198" y="220" text-anchor="middle" fill="#CBD5E1" font-size="14">• Six maps count standing components</text>
-  <text x="198" y="246" text-anchor="middle" fill="#CBD5E1" font-size="14">• Still miss water, soil &amp; shade flux</text>
-  <text x="198" y="272" text-anchor="middle" fill="#CBD5E1" font-size="14">• Can verb-centred prompts surface it?</text>
-  <text x="198" y="300" text-anchor="middle" fill="#93C5FD" font-size="13" font-weight="700">Anchored to 6 strict evaluation criteria</text>
+  <rect x="28" y="122" width="340" height="196" rx="14" fill="#111C2D" stroke="#38BDF8" stroke-width="2.4"/>
+  <text x="198" y="160" text-anchor="middle" fill="#F8FAFC" font-size="21" font-weight="800">The Core Question</text>
+  <text x="198" y="190" text-anchor="middle" fill="#7DD3FC" font-size="16" font-weight="700">Checklists vs. living processes</text>
+  <text x="198" y="228" text-anchor="middle" fill="#CBD5E1" font-size="16">• Six maps count what is standing</text>
+  <text x="198" y="256" text-anchor="middle" fill="#CBD5E1" font-size="16">• Can verbs capture what moves?</text>
+  <text x="198" y="292" text-anchor="middle" fill="#93C5FD" font-size="15.5" font-weight="700">Scored on 6 evaluation criteria</text>
 
   <rect x="28" y="346" width="340" height="208" rx="14" fill="#1A152B" stroke="#A855F7" stroke-width="2.4"/>
-  <text x="198" y="384" text-anchor="middle" fill="#F8FAFC" font-size="19.5" font-weight="800">Open Science Preprints</text>
-  <text x="198" y="412" text-anchor="middle" fill="#D8B4FE" font-size="14.5" font-weight="700">arXiv &amp; bioRxiv data stores</text>
-  <text x="198" y="446" text-anchor="middle" fill="#CBD5E1" font-size="14">• Non-equilibrium rangeland ecology</text>
-  <text x="198" y="472" text-anchor="middle" fill="#CBD5E1" font-size="14">• Landscape Function &amp; thermodynamics</text>
-  <text x="198" y="498" text-anchor="middle" fill="#CBD5E1" font-size="14">• Cognitive linguistics &amp; VLM decoding</text>
-  <text x="198" y="530" text-anchor="middle" fill="#E9D5FF" font-size="13.5" font-weight="700">1,985 sources read &amp; cross-linked</text>
+  <text x="198" y="384" text-anchor="middle" fill="#F8FAFC" font-size="21" font-weight="800">Open Science Preprints</text>
+  <text x="198" y="414" text-anchor="middle" fill="#D8B4FE" font-size="16" font-weight="700">arXiv &amp; bioRxiv</text>
+  <text x="198" y="452" text-anchor="middle" fill="#CBD5E1" font-size="16">• Rangeland ecology &amp; physics</text>
+  <text x="198" y="480" text-anchor="middle" fill="#CBD5E1" font-size="16">• Linguistics &amp; VLM decoding</text>
+  <text x="198" y="524" text-anchor="middle" fill="#E9D5FF" font-size="16" font-weight="700">1,985 sources cross-linked</text>
 
   <!-- COL 2: GOOGLE HYPOTHESIS GENERATION ENGINE -->
   <rect x="420" y="116" width="452" height="442" rx="18" fill="none" stroke="#10B981" stroke-width="7" stroke-opacity="0.14"/>
   <rect x="424" y="120" width="444" height="434" rx="16" fill="url(#hypGrad)" stroke="#10B981" stroke-width="2.8"/>
 
   <text x="646" y="160" text-anchor="middle" fill="#F8FAFC" font-size="22" font-weight="900">Google Hypothesis Generation</text>
-  <text x="646" y="187" text-anchor="middle" fill="#34D399" font-size="14" font-weight="700">labs.google.com/science/hypothesis-generation/</text>
+  <text x="646" y="188" text-anchor="middle" fill="#34D399" font-size="15.5" font-weight="700">labs.google.com/science/hypothesis-generation/</text>
 
   <rect x="446" y="208" width="400" height="72" rx="10" fill="#0B131E" stroke="#334155" stroke-width="1.4"/>
-  <text x="464" y="235" fill="#38BDF8" font-size="15.2" font-weight="800">1. Deep Knowledge Base (1,985 papers)</text>
-  <text x="464" y="260" fill="#CBD5E1" font-size="13.2">Synthesised ecology, physics &amp; multimodal ML</text>
+  <text x="464" y="236" fill="#38BDF8" font-size="17" font-weight="800">1. 1,985-paper knowledge base</text>
+  <text x="464" y="262" fill="#CBD5E1" font-size="15.5">Ecology, physics &amp; multimodal ML</text>
 
   <rect x="446" y="292" width="400" height="72" rx="10" fill="#0B131E" stroke="#334155" stroke-width="1.4"/>
-  <text x="464" y="319" fill="#34D399" font-size="15.2" font-weight="800">2. 10 Candidate Research Proposals</text>
-  <text x="464" y="344" fill="#CBD5E1" font-size="13.2">Compared architectures, losses &amp; spatial CV</text>
+  <text x="464" y="320" fill="#34D399" font-size="17" font-weight="800">2. 10 candidate research designs</text>
+  <text x="464" y="346" fill="#CBD5E1" font-size="15.5">Architectures, losses &amp; spatial CV</text>
 
   <rect x="446" y="376" width="400" height="72" rx="10" fill="#0B131E" stroke="#334155" stroke-width="1.4"/>
-  <text x="464" y="403" fill="#FBBF24" font-size="15.2" font-weight="800">3. Non-Obvious Failure-Mode Audit</text>
-  <text x="464" y="428" fill="#CBD5E1" font-size="13.2">Exposed paradoxes before building pipelines</text>
+  <text x="464" y="404" fill="#FBBF24" font-size="17" font-weight="800">3. Failure-mode audit</text>
+  <text x="464" y="430" fill="#CBD5E1" font-size="15.5">Paradoxes exposed early</text>
 
   <rect x="446" y="460" width="400" height="74" rx="10" fill="#0E241E" stroke="#10B981" stroke-width="1.6"/>
-  <text x="464" y="488" fill="#6EE7B7" font-size="15.2" font-weight="800">4. Recalibrated Experiment Blueprint</text>
-  <text x="464" y="512" fill="#CBD5E1" font-size="13.2">Directly shaped Act 4 prompts &amp; satellite probe</text>
+  <text x="464" y="489" fill="#6EE7B7" font-size="17" font-weight="800">4. Recalibrated blueprint</text>
+  <text x="464" y="515" fill="#CBD5E1" font-size="15.5">Shaped our prompts &amp; satellite probe</text>
 
-  <!-- COL 3: THREE DESIGN INSIGHTS -->
-  <!-- Insight 1 -->
+  <!-- COL 3: TWO TRAPS + ONE PRINCIPLE -->
   <rect x="924" y="120" width="606" height="132" rx="14" fill="#26170B" stroke="#F59E0B" stroke-width="2.5"/>
-  <rect x="944" y="134" width="234" height="24" rx="12" fill="#3B230E" stroke="#F59E0B" stroke-width="1.3"/>
-  <text x="1061" y="150" text-anchor="middle" fill="#FDE68A" font-size="11.5" font-weight="800" letter-spacing="0.6">TRAP 1 · KINETIC CONFLATION</text>
-  <text x="944" y="186" fill="#FBBF24" font-size="18.5" font-weight="800">Banning nouns alone rewards active erosion</text>
-  <text x="944" y="212" fill="#E2E8F0" font-size="14">Unconstrained verb prompts score scouring &amp; gullying as “healthy”.</text>
-  <text x="944" y="236" fill="#6EE7B7" font-size="14.2" font-weight="800">→ Fix: Split into Holding (kept) vs. Losing (draining) verbs</text>
+  <rect x="944" y="133" width="292" height="27" rx="13.5" fill="#3B230E" stroke="#F59E0B" stroke-width="1.3"/>
+  <text x="1090" y="151.5" text-anchor="middle" fill="#FDE68A" font-size="15" font-weight="800" letter-spacing="0.4">TRAP 1 · KINETIC CONFLATION</text>
+  <text x="944" y="188" fill="#FBBF24" font-size="19" font-weight="800">Banning nouns alone rewards active erosion</text>
+  <text x="944" y="214" fill="#E2E8F0" font-size="15.5">Verb-only prompts score gullying &amp; scouring as “healthy”.</text>
+  <text x="944" y="238" fill="#6EE7B7" font-size="15.5" font-weight="800">→ Split verbs into Holding (kept) vs Losing (draining)</text>
 
-  <!-- Insight 2 -->
   <rect x="924" y="271" width="606" height="132" rx="14" fill="#0F2426" stroke="#2DD4BF" stroke-width="2.5"/>
-  <rect x="944" y="285" width="276" height="24" rx="12" fill="#12363A" stroke="#2DD4BF" stroke-width="1.3"/>
-  <text x="1082" y="301" text-anchor="middle" fill="#99F6E4" font-size="11.5" font-weight="800" letter-spacing="0.6">TRAP 2 · GEOGRAPHIC MISMATCH</text>
-  <text x="944" y="337" fill="#2DD4BF" font-size="18.5" font-weight="800">Stripping nouns can break arid-zone intuition</text>
-  <text x="944" y="363" fill="#E2E8F0" font-size="14">Without local context, natural desert sands look like bare scalds.</text>
-  <text x="944" y="387" fill="#7DD3FC" font-size="14.2" font-weight="800">→ Fix: Anchor every reading in 4 physical planes &amp; local climate</text>
+  <rect x="944" y="284" width="322" height="27" rx="13.5" fill="#12363A" stroke="#2DD4BF" stroke-width="1.3"/>
+  <text x="1105" y="302.5" text-anchor="middle" fill="#99F6E4" font-size="15" font-weight="800" letter-spacing="0.4">TRAP 2 · GEOGRAPHIC MISMATCH</text>
+  <text x="944" y="339" fill="#2DD4BF" font-size="19" font-weight="800">Stripping nouns breaks arid-zone intuition</text>
+  <text x="944" y="365" fill="#E2E8F0" font-size="15.5">Natural desert sands can look like bare scalds.</text>
+  <text x="944" y="389" fill="#7DD3FC" font-size="15.5" font-weight="800">→ Anchor readings in 4 physical planes &amp; local climate</text>
 
-  <!-- Insight 3 -->
   <rect x="924" y="422" width="606" height="132" rx="14" fill="#111C2D" stroke="#38BDF8" stroke-width="2.5"/>
-  <rect x="944" y="436" width="270" height="24" rx="12" fill="#152B44" stroke="#38BDF8" stroke-width="1.3"/>
-  <text x="1079" y="452" text-anchor="middle" fill="#BAE6FD" font-size="11.5" font-weight="800" letter-spacing="0.6">DESIGN 3 · DECOUPLED TWO-TIER</text>
-  <text x="944" y="488" fill="#38BDF8" font-size="18.5" font-weight="800">Offline photo reasoning → satellite-trunk probe</text>
-  <text x="944" y="514" fill="#E2E8F0" font-size="14">Keep rich VLM prompting on field photos; never hallucinate under canopy.</text>
-  <text x="944" y="538" fill="#C4B5FD" font-size="14.2" font-weight="800">→ Fix: Probe shared AlphaEarth trunk with strict spatial validation</text>
+  <rect x="944" y="435" width="346" height="27" rx="13.5" fill="#152B44" stroke="#38BDF8" stroke-width="1.3"/>
+  <text x="1117" y="453.5" text-anchor="middle" fill="#BAE6FD" font-size="15" font-weight="800" letter-spacing="0.4">PRINCIPLE · DECOUPLED TWO-TIER</text>
+  <text x="944" y="490" fill="#38BDF8" font-size="19" font-weight="800">Offline photo reasoning → satellite-trunk probe</text>
+  <text x="944" y="516" fill="#E2E8F0" font-size="15.5">Rich prompts on field photos; no guessing under canopy.</text>
+  <text x="944" y="540" fill="#C4B5FD" font-size="15.5" font-weight="800">→ Probe the shared AlphaEarth trunk with spatial CV</text>
 
   <!-- ARROWS -->
   <path d="M 368 220 C 396 220, 396 258, 416 258" stroke="#38BDF8" stroke-width="3" fill="none" marker-end="url(#mSky)"/>

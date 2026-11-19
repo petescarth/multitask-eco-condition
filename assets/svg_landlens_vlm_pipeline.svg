@@ -20,79 +20,74 @@
 
   <rect width="1560" height="590" rx="18" fill="#0D131F" stroke="#1E293B" stroke-width="1.6"/>
 
-  <text x="780" y="42" text-anchor="middle" fill="#F8FAFC" font-size="24.5" font-weight="800">
-    LandLens: Grounded Ecological Reasoning With Gemini VLMs
-  </text>
-  <text x="780" y="69" text-anchor="middle" fill="#94A3B8" font-size="15">
-    One photo-to-JSON visual reasoning pattern scales grazing condition training data and powers our verb-based process view
-  </text>
+  <text x="780" y="42" text-anchor="middle" fill="#F8FAFC" font-size="25" font-weight="800">LandLens: Grounded Ecological Reasoning With Gemini VLMs</text>
+  <text x="780" y="70" text-anchor="middle" fill="#94A3B8" font-size="16">One photo-to-JSON reasoning pattern: more grazing training data and our verb-based process view</text>
 
   <!-- COLUMN HEADERS -->
-  <text x="202" y="102" text-anchor="middle" fill="#38BDF8" font-size="15" font-weight="800" letter-spacing="1.1">1. GROUND INPUTS</text>
-  <text x="660" y="102" text-anchor="middle" fill="#10B981" font-size="15" font-weight="800" letter-spacing="1.1">2. LANDLENS · GEMINI VLM</text>
-  <text x="1241" y="102" text-anchor="middle" fill="#F8FAFC" font-size="15" font-weight="800" letter-spacing="1.1">3. TWO STRUCTURED DATA STREAMS</text>
+  <text x="202" y="104" text-anchor="middle" fill="#38BDF8" font-size="15.5" font-weight="800" letter-spacing="1.1">1. GROUND INPUTS</text>
+  <text x="660" y="104" text-anchor="middle" fill="#10B981" font-size="15.5" font-weight="800" letter-spacing="1.1">2. LANDLENS · GEMINI VLM</text>
+  <text x="1241" y="104" text-anchor="middle" fill="#F8FAFC" font-size="15.5" font-weight="800" letter-spacing="1.1">3. TWO STRUCTURED DATA STREAMS</text>
 
   <!-- COL 1: INPUTS -->
   <rect x="34" y="122" width="336" height="196" rx="14" fill="#111C2D" stroke="#38BDF8" stroke-width="2.4"/>
-  <text x="202" y="160" text-anchor="middle" fill="#F8FAFC" font-size="20" font-weight="800">Field Paddock Photo</text>
-  <text x="202" y="190" text-anchor="middle" fill="#7DD3FC" font-size="15" font-weight="700">Phone, ute or survey camera</text>
-  <text x="202" y="226" text-anchor="middle" fill="#CBD5E1" font-size="14.5">• Geotagged landscape frame</text>
-  <text x="202" y="252" text-anchor="middle" fill="#CBD5E1" font-size="14.5">• Projects 20–50 m past fences</text>
-  <text x="202" y="278" text-anchor="middle" fill="#CBD5E1" font-size="14.5">• Auto-rejects invalid close-ups</text>
+  <text x="202" y="160" text-anchor="middle" fill="#F8FAFC" font-size="21" font-weight="800">Field Paddock Photo</text>
+  <text x="202" y="190" text-anchor="middle" fill="#7DD3FC" font-size="16" font-weight="700">Phone, ute or survey camera</text>
+  <text x="202" y="228" text-anchor="middle" fill="#CBD5E1" font-size="16">• Geotagged landscape view</text>
+  <text x="202" y="256" text-anchor="middle" fill="#CBD5E1" font-size="16">• Judged 20–50 m past fences</text>
+  <text x="202" y="284" text-anchor="middle" fill="#CBD5E1" font-size="16">• Rejects invalid close-ups</text>
 
   <rect x="34" y="346" width="336" height="202" rx="14" fill="#1A152B" stroke="#A855F7" stroke-width="2.4"/>
-  <text x="202" y="384" text-anchor="middle" fill="#F8FAFC" font-size="20" font-weight="800">Climate &amp; Region Context</text>
-  <text x="202" y="414" text-anchor="middle" fill="#D8B4FE" font-size="15" font-weight="700">Injected before every judgement</text>
-  <text x="202" y="450" text-anchor="middle" fill="#CBD5E1" font-size="14.5">• Date &amp; Australian bioregion</text>
-  <text x="202" y="476" text-anchor="middle" fill="#CBD5E1" font-size="14.5">• 3-month rainfall decile</text>
-  <text x="202" y="502" text-anchor="middle" fill="#CBD5E1" font-size="14.5">• 12-month rainfall surplus/deficit</text>
-  <text x="202" y="530" text-anchor="middle" fill="#E9D5FF" font-size="13.5" font-weight="700">Separates drought vs overgrazing</text>
+  <text x="202" y="384" text-anchor="middle" fill="#F8FAFC" font-size="21" font-weight="800">Climate &amp; Region Context</text>
+  <text x="202" y="414" text-anchor="middle" fill="#D8B4FE" font-size="16" font-weight="700">Injected before every judgement</text>
+  <text x="202" y="450" text-anchor="middle" fill="#CBD5E1" font-size="16">• Date &amp; bioregion</text>
+  <text x="202" y="478" text-anchor="middle" fill="#CBD5E1" font-size="16">• 3- and 12-month rainfall</text>
+  <text x="202" y="516" text-anchor="middle" fill="#E9D5FF" font-size="16" font-weight="700">Drought dormancy ≠ overgrazing</text>
 
   <!-- COL 2: LANDLENS GEMINI VLM ENGINE -->
   <rect x="430" y="118" width="460" height="434" rx="18" fill="none" stroke="#10B981" stroke-width="7" stroke-opacity="0.14"/>
   <rect x="434" y="122" width="452" height="426" rx="16" fill="url(#vlmGrad)" stroke="#10B981" stroke-width="2.8"/>
 
   <text x="660" y="164" text-anchor="middle" fill="#F8FAFC" font-size="23" font-weight="900">LandLens Reasoning Engine</text>
-  <text x="660" y="193" text-anchor="middle" fill="#34D399" font-size="15.5" font-weight="700">Frontier Gemini VLM · Domain-Prompted</text>
+  <text x="660" y="193" text-anchor="middle" fill="#34D399" font-size="16" font-weight="700">Frontier Gemini VLM · Domain-Prompted</text>
 
   <rect x="458" y="214" width="404" height="72" rx="10" fill="#0B131E" stroke="#334155" stroke-width="1.4"/>
-  <text x="476" y="241" fill="#38BDF8" font-size="15.5" font-weight="800">1. Perspective &amp; Verge Exclusion</text>
-  <text x="476" y="266" fill="#CBD5E1" font-size="13.2">Excludes road verges &amp; corrects oblique cover bias</text>
+  <text x="476" y="242" fill="#38BDF8" font-size="17" font-weight="800">1. Perspective &amp; Verge Exclusion</text>
+  <text x="476" y="268" fill="#CBD5E1" font-size="15.5">Ignores road verges; fixes oblique cover</text>
 
   <rect x="458" y="298" width="404" height="72" rx="10" fill="#0B131E" stroke="#334155" stroke-width="1.4"/>
-  <text x="476" y="325" fill="#34D399" font-size="15.5" font-weight="800">2. Ecological Decision Rules</text>
-  <text x="476" y="350" fill="#CBD5E1" font-size="13.2">Perennial crowns vs annuals, fire, weed &amp; soil rules</text>
+  <text x="476" y="326" fill="#34D399" font-size="17" font-weight="800">2. Ecological Decision Rules</text>
+  <text x="476" y="352" fill="#CBD5E1" font-size="15.5">Perennials vs annuals, weeds, fire &amp; soil</text>
 
   <rect x="458" y="382" width="404" height="72" rx="10" fill="#0B131E" stroke="#334155" stroke-width="1.4"/>
-  <text x="476" y="409" fill="#FBBF24" font-size="15.5" font-weight="800">3. Evidence → Reasoning → Conclusion</text>
-  <text x="476" y="434" fill="#CBD5E1" font-size="13.2">Mandatory auditable trace + look-alike uncertainty</text>
+  <text x="476" y="410" fill="#FBBF24" font-size="17" font-weight="800">3. Evidence → Reasoning → Conclusion</text>
+  <text x="476" y="436" fill="#CBD5E1" font-size="15.5">Auditable trace for every pillar</text>
 
-  <rect x="458" y="466" width="404" height="62" rx="10" fill="#0E241E" stroke="#10B981" stroke-width="1.6"/>
-  <text x="476" y="492" fill="#6EE7B7" font-size="15.5" font-weight="800">4. Strictly Validated JSON Schema</text>
-  <text x="476" y="514" fill="#CBD5E1" font-size="13.2">Ready for direct model training, audits &amp; cross-checks</text>
+  <rect x="458" y="466" width="404" height="66" rx="10" fill="#0E241E" stroke="#10B981" stroke-width="1.6"/>
+  <text x="476" y="493" fill="#6EE7B7" font-size="17" font-weight="800">4. Strictly Validated JSON</text>
+  <text x="476" y="518" fill="#CBD5E1" font-size="15.5">Ready for training, audits &amp; cross-checks</text>
 
   <!-- COL 3: TWO OUTPUT STREAMS -->
   <!-- Stream A: Grazing Land Condition -->
   <rect x="954" y="122" width="572" height="202" rx="14" fill="#26170B" stroke="#F59E0B" stroke-width="2.6"/>
-  <rect x="976" y="140" width="268" height="26" rx="13" fill="#3B230E" stroke="#F59E0B" stroke-width="1.4"/>
-  <text x="1110" y="157.5" text-anchor="middle" fill="#FDE68A" font-size="12" font-weight="800" letter-spacing="0.6">STREAM A · CONDITION MODEL</text>
+  <rect x="976" y="138" width="318" height="28" rx="14" fill="#3B230E" stroke="#F59E0B" stroke-width="1.4"/>
+  <text x="1135" y="157.5" text-anchor="middle" fill="#FDE68A" font-size="15" font-weight="800" letter-spacing="0.4">STREAM A · CONDITION MODEL</text>
 
-  <text x="976" y="196" fill="#FBBF24" font-size="20.5" font-weight="800">Structured Grazing Condition Prompt</text>
-  <text x="976" y="228" fill="#F8FAFC" font-size="15">• Scores 4 pillars (Soil, Pasture, Woodland, Weeds) → <tspan font-weight="800" fill="#FDE68A">Grades A–D</tspan></text>
-  <text x="976" y="256" fill="#CBD5E1" font-size="15">• Estimates dominant grasses, ground cover &amp; pasture biomass</text>
-  <text x="976" y="286" fill="#6EE7B7" font-size="15.2" font-weight="800">✓ ~5,900 VLM ratings + ~2,000 field transects</text>
-  <text x="994" y="308" fill="#CBD5E1" font-size="14">Lifted rare degraded Grade D sites to ~1,100 (14%), fixing imbalance</text>
+  <text x="976" y="198" fill="#FBBF24" font-size="21" font-weight="800">Structured Grazing Condition Prompt</text>
+  <text x="976" y="230" fill="#F8FAFC" font-size="16">• Scores Soil, Pasture, Woodland &amp; Weeds → <tspan font-weight="800" fill="#FDE68A">Grades A–D</tspan></text>
+  <text x="976" y="258" fill="#CBD5E1" font-size="16">• Estimates grasses, ground cover &amp; biomass</text>
+  <text x="976" y="288" fill="#6EE7B7" font-size="16" font-weight="800">✓ ~5,900 VLM ratings + ~2,000 field transects</text>
+  <text x="994" y="311" fill="#CBD5E1" font-size="15.5">Grade D sites lifted to ~1,100 (14%), fixing imbalance</text>
 
   <!-- Stream B: Verb-Based Process View -->
   <rect x="954" y="346" width="572" height="202" rx="14" fill="#0F2426" stroke="#2DD4BF" stroke-width="2.6"/>
-  <rect x="976" y="364" width="282" height="26" rx="13" fill="#12363A" stroke="#2DD4BF" stroke-width="1.4"/>
-  <text x="1117" y="381.5" text-anchor="middle" fill="#99F6E4" font-size="12" font-weight="800" letter-spacing="0.6">STREAM B · ACT 4 PROCESS VIEW</text>
+  <rect x="976" y="362" width="344" height="28" rx="14" fill="#12363A" stroke="#2DD4BF" stroke-width="1.4"/>
+  <text x="1148" y="381.5" text-anchor="middle" fill="#99F6E4" font-size="15" font-weight="800" letter-spacing="0.4">STREAM B · ACT 4 PROCESS VIEW</text>
 
-  <text x="976" y="420" fill="#2DD4BF" font-size="20.5" font-weight="800">Two-Step Verb-Centred Prompt</text>
-  <text x="976" y="452" fill="#F8FAFC" font-size="15">• Step 1 blocks static nouns → describes <tspan font-weight="800" fill="#86EFAC">Holding</tspan> vs <tspan font-weight="800" fill="#FCD34D">Losing</tspan> verbs</text>
-  <text x="976" y="480" fill="#CBD5E1" font-size="15">• Scores 4 physical planes, Process Stress (0–10) &amp; 4 regimes</text>
-  <text x="976" y="510" fill="#7DD3FC" font-size="15.2" font-weight="800">✓ 136 field-photo sites with strict language guardrails</text>
-  <text x="994" y="532" fill="#CBD5E1" font-size="14">Seeds our early satellite probe of living landscape processes</text>
+  <text x="976" y="422" fill="#2DD4BF" font-size="21" font-weight="800">Two-Step Verb-Centred Prompt</text>
+  <text x="976" y="454" fill="#F8FAFC" font-size="16">• Nouns blocked first → <tspan font-weight="800" fill="#86EFAC">Holding</tspan> vs <tspan font-weight="800" fill="#FCD34D">Losing</tspan> verbs</text>
+  <text x="976" y="482" fill="#CBD5E1" font-size="16">• 4 physical planes, Process Stress &amp; 4 regimes</text>
+  <text x="976" y="512" fill="#7DD3FC" font-size="16" font-weight="800">✓ 136 field-photo sites with language guardrails</text>
+  <text x="994" y="535" fill="#CBD5E1" font-size="15.5">Seeds our early satellite probe of land processes</text>
 
   <!-- ARROWS -->
   <path d="M 370 220 C 402 220, 402 260, 426 260" stroke="#38BDF8" stroke-width="3" fill="none" marker-end="url(#mSky)"/>
