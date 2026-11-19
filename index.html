@@ -38,22 +38,26 @@
 
   /* ===================== PRESENTATION VIEWPORT ===================== */
   #viewport {
+    position: fixed;
+    inset: 0;
     width: 100vw;
     height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
+    height: 100dvh;
+    overflow: hidden;
     background: radial-gradient(circle at 20% 15%, rgba(56, 189, 248, 0.07), transparent 44%),
                 radial-gradient(circle at 82% 85%, rgba(16, 185, 129, 0.06), transparent 44%),
                 #05080E;
   }
 
   #deck {
+    position: absolute;
+    left: 50%;
+    top: 50%;
     width: 1920px;
     height: 1080px;
-    position: relative;
+    flex-shrink: 0;
     transform-origin: center center;
+    transform: translate(-50%, -50%) scale(1);
     background: var(--bg);
     box-shadow: 0 32px 96px rgba(0, 0, 0, 0.88), 0 0 0 1px rgba(148, 163, 184, 0.14);
     overflow: hidden;
@@ -908,12 +912,16 @@
     z-index: 400;
     display: flex;
     align-items: center;
-    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: max-content;
+    max-width: calc(100vw - 16px);
+    gap: 6px;
     background: rgba(11, 15, 23, 0.88);
     backdrop-filter: blur(10px);
     border: 1px solid var(--border-strong);
     padding: 7px 12px;
-    border-radius: 999px;
+    border-radius: 24px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.65);
     transition: opacity 0.3s ease, transform 0.3s ease;
   }
@@ -951,9 +959,9 @@
   /* Speaker Notes Drawer */
   #notes-drawer {
     position: fixed;
-    right: 20px;
+    right: 16px;
     bottom: 72px;
-    width: 480px;
+    width: min(480px, calc(100vw - 32px));
     max-height: 52vh;
     z-index: 450;
     background: rgba(11, 15, 23, 0.96);
@@ -1087,9 +1095,10 @@
     border-bottom: 1px solid var(--border);
     padding: 14px 0;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    gap: 16px;
+    gap: 12px 16px;
   }
   .rd-bar h1 { font-size: 20px; font-weight: 800; }
   .rd-sec-banner {
@@ -2288,10 +2297,15 @@
   let hudTimer = null;
 
   function fitDeck() {
-    const scale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
-    deck.style.transform = `scale(${scale})`;
+    const vw = document.documentElement.clientWidth || window.innerWidth;
+    const vh = document.documentElement.clientHeight || window.innerHeight;
+    const scale = Math.min(vw / 1920, vh / 1080);
+    deck.style.transform = `translate(-50%, -50%) scale(${scale})`;
   }
   window.addEventListener('resize', fitDeck);
+  window.addEventListener('orientationchange', fitDeck);
+  document.addEventListener('fullscreenchange', fitDeck);
+  if (window.visualViewport) window.visualViewport.addEventListener('resize', fitDeck);
   fitDeck();
 
   /* Auto-hide HUD after 2 s without mouse movement */

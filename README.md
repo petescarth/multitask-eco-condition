@@ -7,23 +7,9 @@
 
 ---
 
-## Running the Presentation
+## View the Presentation
 
-This deck is a **100% self-contained, offline HTML5 presentation** (zero external CDN requests).
-
-### Option 1: Local web server (recommended for smooth video playback)
-
-```bash
-git clone https://github.com/petescarth/multitask-eco-condition.git
-cd multitask-eco-condition
-python3 -m http.server 8000
-```
-
-Then open [http://localhost:8000](http://localhost:8000) in any modern browser.
-
-### Option 2: Direct file open
-
-Open `index.html` directly in Chromium, Chrome, Firefox, Edge, or Safari.
+**[https://petescarth.com/multitask-eco-condition](https://petescarth.com/multitask-eco-condition)**
 
 ---
 
