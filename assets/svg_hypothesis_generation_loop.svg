@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1560 590" width="1560" height="590" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+  <defs>
+    <marker id="mSky" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#38BDF8"/>
+    </marker>
+    <marker id="mPur" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#A855F7"/>
+    </marker>
+    <marker id="mAmb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#F59E0B"/>
+    </marker>
+    <marker id="mTeal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#2DD4BF"/>
+    </marker>
+    <linearGradient id="hypGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0E2924"/>
+      <stop offset="100%" stop-color="#0F1F33"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1560" height="590" rx="18" fill="#0D131F" stroke="#1E293B" stroke-width="1.6"/>
+
+  <text x="780" y="42" text-anchor="middle" fill="#F8FAFC" font-size="24" font-weight="800">
+    Google Hypothesis Generation: Framing the Verb-Based Experiment
+  </text>
+  <text x="780" y="68" text-anchor="middle" fill="#94A3B8" font-size="14.5">
+    labs.google.com/science/hypothesis-generation/ · Stress-testing ideas against 1,985 papers before writing code
+  </text>
+
+  <!-- COLUMN HEADERS -->
+  <text x="198" y="101" text-anchor="middle" fill="#38BDF8" font-size="14.5" font-weight="800" letter-spacing="1.1">1. QUESTION &amp; CORPUS</text>
+  <text x="646" y="101" text-anchor="middle" fill="#10B981" font-size="14.5" font-weight="800" letter-spacing="1.1">2. HYPOTHESIS ENGINE</text>
+  <text x="1227" y="101" text-anchor="middle" fill="#F8FAFC" font-size="14.5" font-weight="800" letter-spacing="1.1">3. THREE TRAPS CAUGHT BEFORE CODING</text>
+
+  <!-- COL 1: INPUTS -->
+  <rect x="28" y="120" width="340" height="198" rx="14" fill="#111C2D" stroke="#38BDF8" stroke-width="2.4"/>
+  <text x="198" y="158" text-anchor="middle" fill="#F8FAFC" font-size="19.5" font-weight="800">Core Scientific Gap</text>
+  <text x="198" y="186" text-anchor="middle" fill="#7DD3FC" font-size="14.5" font-weight="700">Static checklists vs. living processes</text>
+  <text x="198" y="220" text-anchor="middle" fill="#CBD5E1" font-size="14">• Six maps count standing components</text>
+  <text x="198" y="246" text-anchor="middle" fill="#CBD5E1" font-size="14">• Still miss water, soil &amp; shade flux</text>
+  <text x="198" y="272" text-anchor="middle" fill="#CBD5E1" font-size="14">• Can verb-centred prompts surface it?</text>
+  <text x="198" y="300" text-anchor="middle" fill="#93C5FD" font-size="13" font-weight="700">Anchored to 6 strict evaluation criteria</text>
+
+  <rect x="28" y="346" width="340" height="208" rx="14" fill="#1A152B" stroke="#A855F7" stroke-width="2.4"/>
+  <text x="198" y="384" text-anchor="middle" fill="#F8FAFC" font-size="19.5" font-weight="800">Open Science Preprints</text>
+  <text x="198" y="412" text-anchor="middle" fill="#D8B4FE" font-size="14.5" font-weight="700">arXiv &amp; bioRxiv data stores</text>
+  <text x="198" y="446" text-anchor="middle" fill="#CBD5E1" font-size="14">• Non-equilibrium rangeland ecology</text>
+  <text x="198" y="472" text-anchor="middle" fill="#CBD5E1" font-size="14">• Landscape Function &amp; thermodynamics</text>
+  <text x="198" y="498" text-anchor="middle" fill="#CBD5E1" font-size="14">• Cognitive linguistics &amp; VLM decoding</text>
+  <text x="198" y="530" text-anchor="middle" fill="#E9D5FF" font-size="13.5" font-weight="700">1,985 sources read &amp; cross-linked</text>
+
+  <!-- COL 2: GOOGLE HYPOTHESIS GENERATION ENGINE -->
+  <rect x="420" y="116" width="452" height="442" rx="18" fill="none" stroke="#10B981" stroke-width="7" stroke-opacity="0.14"/>
+  <rect x="424" y="120" width="444" height="434" rx="16" fill="url(#hypGrad)" stroke="#10B981" stroke-width="2.8"/>
+
+  <text x="646" y="160" text-anchor="middle" fill="#F8FAFC" font-size="22" font-weight="900">Google Hypothesis Generation</text>
+  <text x="646" y="187" text-anchor="middle" fill="#34D399" font-size="14" font-weight="700">labs.google.com/science/hypothesis-generation/</text>
+
+  <rect x="446" y="208" width="400" height="72" rx="10" fill="#0B131E" stroke="#334155" stroke-width="1.4"/>
+  <text x="464" y="235" fill="#38BDF8" font-size="15.2" font-weight="800">1. Deep Knowledge Base (1,985 papers)</text>
+  <text x="464" y="260" fill="#CBD5E1" font-size="13.2">Synthesised ecology, physics &amp; multimodal ML</text>
+
+  <rect x="446" y="292" width="400" height="72" rx="10" fill="#0B131E" stroke="#334155" stroke-width="1.4"/>
+  <text x="464" y="319" fill="#34D399" font-size="15.2" font-weight="800">2. 10 Candidate Research Proposals</text>
+  <text x="464" y="344" fill="#CBD5E1" font-size="13.2">Compared architectures, losses &amp; spatial CV</text>
+
+  <rect x="446" y="376" width="400" height="72" rx="10" fill="#0B131E" stroke="#334155" stroke-width="1.4"/>
+  <text x="464" y="403" fill="#FBBF24" font-size="15.2" font-weight="800">3. Non-Obvious Failure-Mode Audit</text>
+  <text x="464" y="428" fill="#CBD5E1" font-size="13.2">Exposed paradoxes before building pipelines</text>
+
+  <rect x="446" y="460" width="400" height="74" rx="10" fill="#0E241E" stroke="#10B981" stroke-width="1.6"/>
+  <text x="464" y="488" fill="#6EE7B7" font-size="15.2" font-weight="800">4. Recalibrated Experiment Blueprint</text>
+  <text x="464" y="512" fill="#CBD5E1" font-size="13.2">Directly shaped Act 4 prompts &amp; satellite probe</text>
+
+  <!-- COL 3: THREE DESIGN INSIGHTS -->
+  <!-- Insight 1 -->
+  <rect x="924" y="120" width="606" height="132" rx="14" fill="#26170B" stroke="#F59E0B" stroke-width="2.5"/>
+  <rect x="944" y="134" width="234" height="24" rx="12" fill="#3B230E" stroke="#F59E0B" stroke-width="1.3"/>
+  <text x="1061" y="150" text-anchor="middle" fill="#FDE68A" font-size="11.5" font-weight="800" letter-spacing="0.6">TRAP 1 · KINETIC CONFLATION</text>
+  <text x="944" y="186" fill="#FBBF24" font-size="18.5" font-weight="800">Banning nouns alone rewards active erosion</text>
+  <text x="944" y="212" fill="#E2E8F0" font-size="14">Unconstrained verb prompts score scouring &amp; gullying as “healthy”.</text>
+  <text x="944" y="236" fill="#6EE7B7" font-size="14.2" font-weight="800">→ Fix: Split into Holding (kept) vs. Losing (draining) verbs</text>
+
+  <!-- Insight 2 -->
+  <rect x="924" y="271" width="606" height="132" rx="14" fill="#0F2426" stroke="#2DD4BF" stroke-width="2.5"/>
+  <rect x="944" y="285" width="276" height="24" rx="12" fill="#12363A" stroke="#2DD4BF" stroke-width="1.3"/>
+  <text x="1082" y="301" text-anchor="middle" fill="#99F6E4" font-size="11.5" font-weight="800" letter-spacing="0.6">TRAP 2 · GEOGRAPHIC MISMATCH</text>
+  <text x="944" y="337" fill="#2DD4BF" font-size="18.5" font-weight="800">Stripping nouns can break arid-zone intuition</text>
+  <text x="944" y="363" fill="#E2E8F0" font-size="14">Without local context, natural desert sands look like bare scalds.</text>
+  <text x="944" y="387" fill="#7DD3FC" font-size="14.2" font-weight="800">→ Fix: Anchor every reading in 4 physical planes &amp; local climate</text>
+
+  <!-- Insight 3 -->
+  <rect x="924" y="422" width="606" height="132" rx="14" fill="#111C2D" stroke="#38BDF8" stroke-width="2.5"/>
+  <rect x="944" y="436" width="270" height="24" rx="12" fill="#152B44" stroke="#38BDF8" stroke-width="1.3"/>
+  <text x="1079" y="452" text-anchor="middle" fill="#BAE6FD" font-size="11.5" font-weight="800" letter-spacing="0.6">DESIGN 3 · DECOUPLED TWO-TIER</text>
+  <text x="944" y="488" fill="#38BDF8" font-size="18.5" font-weight="800">Offline photo reasoning → satellite-trunk probe</text>
+  <text x="944" y="514" fill="#E2E8F0" font-size="14">Keep rich VLM prompting on field photos; never hallucinate under canopy.</text>
+  <text x="944" y="538" fill="#C4B5FD" font-size="14.2" font-weight="800">→ Fix: Probe shared AlphaEarth trunk with strict spatial validation</text>
+
+  <!-- ARROWS -->
+  <path d="M 368 220 C 396 220, 396 258, 416 258" stroke="#38BDF8" stroke-width="3" fill="none" marker-end="url(#mSky)"/>
+  <path d="M 368 450 C 396 450, 396 412, 416 412" stroke="#A855F7" stroke-width="3" fill="none" marker-end="url(#mPur)"/>
+
+  <path d="M 868 250 C 896 250, 896 186, 916 186" stroke="#F59E0B" stroke-width="3" fill="none" marker-end="url(#mAmb)"/>
+  <path d="M 868 337 L 916 337" stroke="#2DD4BF" stroke-width="3" fill="none" marker-end="url(#mTeal)"/>
+  <path d="M 868 424 C 896 424, 896 488, 916 488" stroke="#38BDF8" stroke-width="3" fill="none" marker-end="url(#mSky)"/>
+</svg>
