@@ -41,7 +41,7 @@
   4. Joint multi-task training nearly halves tree-cover error (`−44%` across `~3,600` survey lines) and cuts false native-vegetation alarms on cleared land from `76% → 9%`.
 - **Act 4 · Early Research: The Process View (`11–16`):**
   - Slide 11 frames nouns vs. verbs (positioning statement first) and states the hunch; Slide 12 stress-tests it with **Google Hypothesis Generation** (`labs.google.com/science/hypothesis-generation/`), which synthesised `1,985` sources across `10` candidate designs to catch *kinetic conflation* (leading to **Holding** vs. **Losing** verbs) and *geographic mismatch* before building the verb-based experiment.
-  - Applied via a two-step verb-centred Gemini VLM prompt across `136` field-photo sites — finding that more than a third (`38%`) of Grade A pastures mask missing overstorey structure, and testing satellite-trunk probing across the ~650,000 km² Mitchell corridor.
+  - Applied via a two-step verb-centred Gemini VLM prompt across `186` field-photo sites — finding that about two in five (`42%`) Grade A pastures mask missing overstorey structure (replicated on the 50 newest sites). A satellite-trunk probe predicts these readings with moderate skill across 9 held-out regions (CCC ≈ 0.5, AUC 0.67–0.75) and maps the ~655,000 km² Mitchell corridor with a calibrated 90% uncertainty band per pixel.
 - **Close (`17`):** Takeaways, links to slides and code, and acknowledgement of the end-to-end Google AI for Science stack (**Google Hypothesis Generation**, **Gemini VLMs**, **AlphaEarth Foundations**, **Google Antigravity**, and **Google Colab**).
 
 ### Technical Appendix (`A1–A13` Backup)
@@ -57,7 +57,7 @@ Only the minimal files required for the deck to render and run offline are track
 .
 ├── index.html          # Standalone 33-slide HTML5 presentation (Intro + 17 Main + A1–A13 Appendix)
 ├── speaker_notes.md    # Complete presenter script with slide timings & rehearsal checkpoints
-├── assets/             # 40 charts, maps, SVG diagrams, field photos, word clouds & drive clip
+├── assets/             # 41 charts, maps, SVG diagrams, field photos, word clouds & drive clip
 ├── .gitignore          # Excludes local reference/ materials from version control
 └── README.md           # This guide
 ```
