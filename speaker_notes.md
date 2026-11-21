@@ -4,7 +4,7 @@
 **Event:** GDG AI for Science Asia-Pacific DevFest, Sydney · 25 min + 5 min Q&A  
 **Shortcuts in Deck:** `←`/`→` navigate · `S` speaker notes · `R` Reader Mode · `G` slide grid · `A` Appendix · `1–4` regimes on Slide 13
 
-**Total script length:** 2,754 words (Main Talk) + 920 words (Appendix) = **3,674 words total**.
+**Total script length:** 2,801 words (Main Talk) + 920 words (Appendix) = **3,721 words total**.
 
 **Rehearsal checkpoints** (paced at ~128 wpm + slide changes; slower for the Acknowledgement):
 
@@ -14,8 +14,8 @@
 | Act 1 · The problem | 5:00 |
 | Act 2 · The condition model | 8:30 |
 | Act 3 · Three lessons & results | 14:25 |
-| Act 4 · Early research | 21:55 |
-| Close | 23:15 |
+| Act 4 · Early research | 22:15 |
+| Close | 23:35 |
 
 ---
 
@@ -97,29 +97,29 @@ Now I want to pivot — and be upfront that this final part of the talk is early
 Before building the verb-based experiment, we stress-tested that hunch with Google Hypothesis Generation. It read nearly two thousand arXiv and bioRxiv papers and compared ten candidate research designs against our criteria. It flagged two failure modes and one design principle. First, kinetic conflation: if you only ban nouns, a VLM scores gullying and scouring as healthy simply because they are active — so we split verbs into Holding versus Losing. Second, stripping landscape nouns can break arid-zone intuition, so every reading is anchored in local physical and climate context. And the design principle: keep rich verb prompting offline on field photos, then probe our shared AlphaEarth satellite trunk rather than guessing beneath tree canopies.
 
 ### 13 · The same ground through two views  
-*Act 4 · Early research · 16:45–18:10 · ~139 words*
+*Act 4 · Early research · 16:45–18:15 · ~152 words*
 
-When we run that two-step Gemini prompt across 186 field sites, four physical regimes emerge. Let me show two of them live. Regime 1, Intact processes: Site 185 near Weribone is grassy box woodland — tall trees and a full perennial grass layer — so canopies filter the rain while grass roots knit the soil, for a Process Stress of just 1.3 out of 10. [Press 2] Regime 2, Masked: Site 176 near Oberina and Site 61 look green and grassy, so checklists rate them well, yet the process view flags missing overstorey trees and baking air above the grass — Process Stress around 4. The other two tabs, Disrupted and Highly disrupted, show glazed clay pans shedding runoff and hard-set, crusting surfaces above 8 out of 10 — yet even there, fallen branches act as tiny soil-catching micro-sinks.
+When we run that two-step Gemini prompt across 186 field sites, four physical regimes emerge. Let me show two of them live. Regime 1, Intact processes: Site 185 near Weribone is grassy box woodland — tall trees and a full perennial grass layer — so canopies filter the rain while grass roots knit the soil, for a Process Stress of just 1.3 out of 10. [Press 2] Regime 2, Masked: good ground cover earns both sites Grade A, yet something else is quietly failing. Site 176 near Oberina has lost its brigalow overstorey. Site 60 near Dirranbandi still has its trees, but unburnt buffel grass has locked up the ground layer — Process Stress around 3 to 4. The other two tabs, Disrupted and Highly disrupted, show glazed clay pans shedding runoff and hard-set, crusting surfaces above 8 out of 10 — yet even there, fallen branches act as tiny soil-catching micro-sinks.
 
-### 14 · Some top-rated pasture is quietly losing its trees  
-*Act 4 · Early research · 18:10–19:20 · ~141 words*
+### 14 · Some top-rated pasture is quietly losing a process  
+*Act 4 · Early research · 18:15–19:35 · ~163 words*
 
-Now put those four process regimes directly alongside standard grazing grades across all 186 field-photo sites, and a striking pattern jumps out. Look back at Site 176 near Oberina on the left. Thick grass covers the ground, so a pastoral checklist gives it top marks — Grade A. Yet look at the horizon: that wall of brigalow is what the whole paddock used to be. The trees that shelter the soil, cool the air, and anchor deep moisture are gone. Across the 186 sites on the right, about two in five Grade A pasture sites — forty-two percent — turn out to be Masked or Disrupted underneath. And it held up on the fifty sites we added in the latest run: eleven of the twenty-one new Grade A sites. That is the exact blind spot a process view begins to uncover.
+Now put those four process regimes directly alongside standard grazing grades across all 186 field-photo sites, and a striking pattern jumps out. Look back at Site 176 near Oberina on the left. Thick grass covers the ground, so a pastoral checklist gives it top marks — Grade A. Yet look at the horizon: that wall of brigalow is what the whole paddock used to be. The trees that shelter the soil, cool the air, and anchor deep moisture are gone. Across the 186 sites on the right, about two in five Grade A pasture sites — forty-two percent — turn out to be Masked or Disrupted underneath. Most have lost their trees, like this one; about one in six still has them, with buffel locking up the ground layer. And it held up on the fifty sites we added in the latest run: eleven of the twenty-one new Grade A sites. That is the exact blind spot a process view begins to uncover.
 
 ### 15 · How we check the process view  
-*Act 4 · Early research · 19:20–20:50 · ~181 words*
+*Act 4 · Early research · 19:35–21:05 · ~181 words*
 
 Can satellites actually see this, and how honest is the check? We trained a lightweight probe on the shared internal features of the same condition model — deliberately withholding the six condition maps so it could not take shortcuts — to predict the photo-based Process Stress at 186 sites. Tested on nine held-out regions, agreement is moderate: a concordance of about 0.5 — 0.49 raw, 0.53 after a simple spread calibration — and an AUC of 0.67 to 0.75 for flagging Masked and Highly disrupted sites, where 0.5 is chance. It is strong on the eastern escarpment and close to zero in the far-west Channel Country — remember the Windorah dune? When the far west is held out, the probe reads it as stressed. One honest ML footnote: on our original 136 sites the new backbone alone did no better — the gain came from fifty more field sites. On the right, every reading is anchored to four physical planes — soil, surface water, tree canopy and fire — with guardrails that stop the model inventing cultural, ceremonial or ownership claims.
 
 ### 16 · Mapping Process Stress across 655,000 km²  
-*Act 4 · Early research · 20:50–21:55 · ~137 words*
+*Act 4 · Early research · 21:05–22:15 · ~146 words*
 
-When we project that early satellite probe across the roughly six hundred and fifty-five thousand square kilometre Mitchell corridor, a striking spatial pattern emerges. On the left is continuous Process Stress, with our 186 field-photo sites as white dots; on the right, the dominant landscape regime. Just over half maps as Intact processes, in the far-west channel country, the woody ranges and intact mulga. About a third maps as Masked — open grazing country where good ground cover hides simplified tree structure. And about one in seven flags as Disrupted or Highly disrupted. Every pixel now carries a calibrated ninety-percent uncertainty band, and that matters: between model versions the Intact share moved by more than ten points. Treat this as an early research map: it tells field teams where to drive next, not a finished regulatory scorecard.
+When we project that early satellite probe across the roughly six hundred and fifty-five thousand square kilometre Mitchell corridor, a striking spatial pattern emerges. On the left is continuous Process Stress, with our 186 field-photo sites as white dots; on the right, the dominant landscape regime. Just over half maps as Intact processes, in the far-west channel country, the woody ranges and intact mulga. About a third maps as Masked — good ground cover hiding a weaker process, mostly missing overstorey trees, in places exotic grass locking up the ground layer. And about one in seven flags as Disrupted or Highly disrupted. Every pixel now carries a calibrated ninety-percent uncertainty band, and that matters: between model versions the Intact share moved by more than ten points. Treat this as an early research map: it tells field teams where to drive next, not a finished regulatory scorecard.
 
 ### 17 · From static ledgers to living processes — what this unlocks  
-*Close · 21:55–23:15 · ~166 words*
+*Close · 22:15–23:35 · ~169 words*
 
-I will leave this up for questions. Four quick take-homes. First, AlphaEarth's global embeddings let a small team train one compact multi-task model that maps 1.2 billion pixels of Australia in about forty minutes, nearly halving tree-cover error — and the same pattern travels anywhere in APAC. Second, grounded Gemini VLMs turn field photos into auditable scientific data, landing within one class of field ecologists ninety-eight percent of the time once calibrated. Third, domain discipline — separating ecology from pasture and scoring the optimiser fairly — is what makes continental AI trustworthy. Fourth, an early process view, shaped with Google Hypothesis Generation, shows about two in five top-rated pastures quietly losing structure. Next, savanna field surveys across Northern Australia will test both models out of domain. None of this would have been practical without Google Antigravity for our agentic engineering and Google Colab for the GPU compute. Thank you — the slides and code are at the link on screen, and I would love your questions.
+I will leave this up for questions. Four quick take-homes. First, AlphaEarth's global embeddings let a small team train one compact multi-task model that maps 1.2 billion pixels of Australia in about forty minutes, nearly halving tree-cover error — and the same pattern travels anywhere in APAC. Second, grounded Gemini VLMs turn field photos into auditable scientific data, landing within one class of field ecologists ninety-eight percent of the time once calibrated. Third, domain discipline — separating ecology from pasture and scoring the optimiser fairly — is what makes continental AI trustworthy. Fourth, an early process view, shaped with Google Hypothesis Generation, shows about two in five top-rated pastures quietly losing a key process underneath. Next, savanna field surveys across Northern Australia will test both models out of domain. None of this would have been practical without Google Antigravity for our agentic engineering and Google Colab for the GPU compute. Thank you — the slides and code are at the link on screen, and I would love your questions.
 
 ## Technical Appendix (Q&A Backup)
 
