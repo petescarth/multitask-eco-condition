@@ -1,0 +1,28 @@
+{
+  "model_name": "ChampionQuadTaskDNN_v2_OptunaOptimized",
+  "description": "Retrained on 100% of balanced nationwide data with southern negative controls and Optuna champion architecture",
+  "champion_trial": 218,
+  "optuna_best_value": 144.6101948038737,
+  "epochs": 15,
+  "total_training_samples": 4326170,
+  "hyperparameters": {
+    "n_layers": 2,
+    "h1_2l": 768,
+    "h2_2l": 384,
+    "activation": "relu",
+    "dropout_rate": 0.13616813073210218,
+    "head_type": "subhead_light",
+    "head_dropout": 0.12969360004997632,
+    "lr": 0.001029026807424834,
+    "weight_decay": 7.855646270867556e-05,
+    "w_hcas": 0.15102487708672155,
+    "w_ref": 0.06484357719847648,
+    "w_nat": 0.21510590495083182,
+    "huber_delta": 8.57924905578258,
+    "huber_delta_nat": 7.9310313083000965
+  },
+  "layers_config": [
+    768,
+    384
+  ]
+}

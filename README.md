@@ -13,6 +13,31 @@
 
 ---
 
+## Getting Started (Reproducible Notebook)
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/petescarth/multitask-eco-condition/blob/main/examples/getting_started.ipynb)
+
+An end-to-end starter notebook is available in [`examples/getting_started.ipynb`](examples/getting_started.ipynb) (pointing directly to this GitHub repository and public datasets). It covers:
+
+1. **Public Data & AlphaEarth Dequantisation:** Extracting 64-D embeddings (`GOOGLE/SATELLITE_EMBEDDING/V1/ANNUAL`), computing **IBRA v7** subregion centroid similarities (`reference_centroids.json`), and inspecting HCAS vs. Spatial BioCondition disagreement.
+2. **4-Head Multi-Task Training:** Building and training `ParametricQuadTaskDNN` from scratch across the **4 public heads** (*Spatial BioCondition*, *HCAS*, *Reference Climax*, *HAVPlot Floristic Nativity*) with spatial blocking and unweighted validation scoring.
+3. **80 m Spatial Inference:** Running the self-contained 4-head ONNX model (`examples/data/quadtask_v2_4head.onnx`) across a `128 × 128` Carnarvon Gorge / Buckland Basalts chip.
+4. **Verb-Driven Process Prompt (`PROMPT_V5_REFINED`):** Running the inline, noun-blocked Gemini VLM process prompt and Phase 1 rubric check on bundled field photos (`examples/photos/site_185.jpg`, `site_176.jpg`, `site_54.jpg`, with cached offline fallbacks).
+5. **Frozen `384-D` Trunk Probing:** Extracting the clean 4-head frozen trunk to measure SVD rank expansion and transfer to downstream ecological targets.
+
+> *Note on data scope:* Proprietary grazing Land Condition (ABCD) and lidar Canopy Cover datasets, weights, and prompts are excluded. Only the first 4 public heads, the clean 4-head frozen trunk, and the verb-driven process prompt are included.
+
+### Upstream Public Datasets
+
+- **AlphaEarth Foundations Satellite Embeddings:** [`GOOGLE/SATELLITE_EMBEDDING/V1/ANNUAL`](https://developers.google.com/earth-engine/datasets/catalog/GOOGLE_SATELLITE_EMBEDDING_V1_ANNUAL)
+- **CSIRO HCAS v3.3:** [`data.csiro.au/collection/csiro:65549`](https://data.csiro.au/collection/csiro:65549) (DOIs `10.25919/zhfg-1x80`, `10.25919/jz55-5d44`)
+- **HAVPlot Botanical Surveys:** [`doi.org/10.25919/5cex-4s70`](https://doi.org/10.25919/5cex-4s70) (Mokany et al., 2022)
+- **Queensland Spatial BioCondition:** [`data.qld.gov.au/dataset/queensland-spatial-biocondition-series`](https://www.data.qld.gov.au/dataset/queensland-spatial-biocondition-series)
+- **UN SEEA-EA / FACTE Baselines:** [`csiro:65931`](https://data.csiro.au/collection/csiro:65931) (Owers et al., 2026) · [`csiro:62412`](https://data.csiro.au/collection/csiro:62412) (Yang et al., 2025)
+- **IBRA v7 Subregions:** [`data.gov.au/data/dataset/4070b161-1fca-4d23-82ed-ce2659fe8a7a`](https://data.gov.au/data/dataset/4070b161-1fca-4d23-82ed-ce2659fe8a7a) · **ESA WorldCover v200:** `ESA/WorldCover/v200`
+
+---
+
 ## Controls & Interactive Features
 
 | Key / Action | Function |
@@ -58,6 +83,7 @@ Only the minimal files required for the deck to render and run offline are track
 ├── index.html          # Standalone 33-slide HTML5 presentation (Intro + 17 Main + A1–A13 Appendix)
 ├── speaker_notes.md    # Complete presenter script with slide timings & rehearsal checkpoints
 ├── assets/             # 42 charts, maps, SVG diagrams, field photos, word clouds & drive clip
+├── examples/           # End-to-end Colab/Jupyter getting_started.ipynb, 4-head ONNX/PT, centroids & sample photos
 ├── .gitignore          # Excludes local reference/ materials from version control
 └── README.md           # This guide
 ```
