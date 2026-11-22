@@ -1,5 +1,7 @@
 # From Static Ledgers to Living Processes
 
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](LICENSE)
+
 **Mapping land condition across Australia with one shared AI model — and teaching vision AI to notice what checklists miss.**
 
 - **Presenter:** Dr Peter Scarth (Adjunct Associate Professor, The University of Queensland · Director, Cibo Labs · CTO, Ozius)
@@ -76,16 +78,31 @@ An end-to-end starter notebook is available in [`examples/getting_started.ipynb`
 
 ## Repository Contents
 
-Only the minimal files required for the deck to render and run offline are tracked:
-
 ```text
 .
 ├── index.html          # Standalone 33-slide HTML5 presentation (Intro + 17 Main + A1–A13 Appendix)
 ├── speaker_notes.md    # Complete presenter script with slide timings & rehearsal checkpoints
-├── assets/             # 42 charts, maps, SVG diagrams, field photos, word clouds & drive clip
+├── assets/             # Charts, maps, SVG diagrams, field photos, word clouds & drive clip
 ├── examples/           # End-to-end Colab/Jupyter getting_started.ipynb, 4-head ONNX/PT, centroids & sample photos
-├── .gitignore          # Excludes local reference/ materials from version control
+├── LICENSE             # Creative Commons Attribution 4.0 International (CC BY 4.0)
+├── .gitignore          # Git ignore rules
 └── README.md           # This guide
 ```
 
-> Local background documents, raw source videos, prompts, and legacy assets kept in `reference/` are excluded via `.gitignore`.
+---
+
+## License & Third-Party Data Attribution
+
+Unless otherwise noted, the presentation, field photographs, notebook code, verb-driven prompt (`PROMPT_V5_REFINED`), and companion 4-head `QuadTask v2` weights and artefacts in this repository are licensed under the **[Creative Commons Attribution 4.0 International License (CC BY 4.0)](LICENSE)**.
+
+### Third-Party Data Attribution
+
+The companion samples, lookup tables, and references incorporate or build upon third-party public datasets that retain their own licences and attribution requirements:
+
+- **Google DeepMind AlphaEarth Foundations (Satellite Embedding Dataset):** [`GOOGLE/SATELLITE_EMBEDDING/V1/ANNUAL`](https://developers.google.com/earth-engine/datasets/catalog/GOOGLE_SATELLITE_EMBEDDING_V1/ANNUAL) (Google Earth Engine).
+- **CSIRO Habitat Condition Assessment System (HCAS v3.3):** Valavi et al. / Williams et al. (2025), [`data.csiro.au/collection/csiro:65549`](https://data.csiro.au/collection/csiro:65549) (DOIs `10.25919/zhfg-1x80`, `10.25919/jz55-5d44`).
+- **Harmonised Australian Vegetation Plot Dataset (HAVPlot):** Mokany et al. (2022), [`doi.org/10.25919/5cex-4s70`](https://doi.org/10.25919/5cex-4s70).
+- **Queensland Spatial BioCondition Series:** Queensland Department of Environment, Science and Innovation (DESI), [`data.qld.gov.au/dataset/queensland-spatial-biocondition-series`](https://www.data.qld.gov.au/dataset/queensland-spatial-biocondition-series).
+- **UN SEEA-EA / FACTE Ecosystem Condition Baselines:** Owers et al. (2026), [`csiro:65931`](https://data.csiro.au/collection/csiro:65931); Yang et al. (2025), [`csiro:62412`](https://data.csiro.au/collection/csiro:62412).
+- **Interim Biogeographic Regionalisation for Australia (IBRA v7):** Australian Government Department of Climate Change, Energy, the Environment and Water (DCCEEW), [`data.gov.au/data/dataset/4070b161-1fca-4d23-82ed-ce2659fe8a7a`](https://data.gov.au/data/dataset/4070b161-1fca-4d23-82ed-ce2659fe8a7a).
+- **ESA WorldCover v200:** Zanaga et al. (2022), `ESA/WorldCover/v200` (Google Earth Engine).
