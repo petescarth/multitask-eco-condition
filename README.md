@@ -1,3 +1,7 @@
+<p>
+  <img src="assets/apac_devfest_2026_logo.png" alt="APAC AI for Science DevFest 2026" width="260">
+</p>
+
 # From Static Ledgers to Living Processes
 
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](LICENSE)
