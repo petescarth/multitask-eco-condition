@@ -4,7 +4,7 @@
 **Event:** GDG AI for Science Asia-Pacific DevFest, Sydney · 25 min + 5 min Q&A  
 **Shortcuts in Deck:** `←`/`→` navigate · `S` speaker notes · `R` Reader Mode · `G` slide grid · `A` Appendix · `1–4` regimes on Slide 13
 
-**Total script length:** 2,801 words (Main Talk) + 920 words (Appendix) = **3,721 words total**.
+**Total script length:** 2,817 words (Main Talk) + 920 words (Appendix) = **3,737 words total**.
 
 **Rehearsal checkpoints** (paced at ~128 wpm + slide changes; slower for the Acknowledgement):
 
@@ -22,9 +22,9 @@
 ## Main Talk
 
 ### I-1 · Acknowledgement of Country  
-*Intro · 0:00–1:05 · ~105 words*
+*Intro · 0:00–1:05 · ~120 words*
 
-Before we look at any maps or models, I would like to begin with an Acknowledgement of Country. I acknowledge the Gadigal people of the Eora Nation, the Traditional Custodians of the land on which we meet today in Sydney. I come from Meanjin — Brisbane — the lands of the Turrbal and Jagera/Yuggera peoples. The field work you will see in this talk was carried out across southern and inland Queensland, on the lands of the Bidjara, Gunggari, Kooma, Wangkumara and Muruwari peoples. I pay my respects to their Elders past and present, and to all Aboriginal and Torres Strait Islander people here today.
+Before we look at any maps or models, I would like to begin with an Acknowledgement of Country. I acknowledge the Gadigal people of the Eora Nation, the Traditional Custodians of the land on which we meet today in Sydney. I come from Meanjin — Brisbane — the lands of the Turrbal and Jagera/Yuggera peoples. The field work you will see in this talk was carried out across southern and inland Queensland — including the lands of the Bidjara, Karingbal, Mandandanji, Gunggari, Kooma, Kunja, Budjiti and Mithaka peoples, and neighbouring First Nations across the Channel Country, Balonne and borderlands. I pay my respects to their Elders past and present, and to all Aboriginal and Torres Strait Islander peoples here today.
 
 ### I-2 · From Static Ledgers to Living Processes  
 *Intro · 1:05–1:45 · ~74 words*
